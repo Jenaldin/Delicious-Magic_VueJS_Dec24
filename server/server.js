@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-import apiRouter from './routes';
+import apiRouter from './router';
 import routes from './routes';
 import { authMiddleware } from './middlewares/authMiddleware';
 
