@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Server REST API for VueJS SoftUni exam December, 2024",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
