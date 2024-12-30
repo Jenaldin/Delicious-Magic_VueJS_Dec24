@@ -1,4 +1,5 @@
-const router = require('express').Router();
+import express from 'express';
+const router = express.Router();
 
 router.get('/', (req, res) => {
    res.send(`<h3>You Shall Not Pass!!!</h3>
@@ -17,4 +18,4 @@ router.get('*', (req, res) => {
    <div><h3>Please use the front-end application, thank you!</h3></div>`);
 });
 
-module.exports = router;
+export default router;
