@@ -6,8 +6,8 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-import apiRouter from './router';
-import routes from './routes';
+import apiRouter from './routes';
+import router from './router';
 import { authMiddleware } from './middlewares/authMiddleware';
 
 const app = express();
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(authMiddleware);
 app.use(express.static('public'));
 app.use('/api', apiRouter);
-app.use(routes);
+app.use(router);
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('connected', () => console.log('DB is Connected!'));
