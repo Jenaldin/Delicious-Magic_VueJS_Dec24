@@ -1,14 +1,17 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import pinia from './stores';
+import axiosApi from './axios';
+import { useVuelidate } from '@vuelidate/core';
 
-import App from './App.vue'
-import router from './router'
+const app = createApp(App);
+app.config.globalProperties.$axios = axiosApi;
 
-const app = createApp(App)
+app.use(pinia);
+app.use(router);
+app.use(useVuelidate);
 
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+app.mount('#app');
