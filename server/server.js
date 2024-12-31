@@ -24,8 +24,8 @@ app.use('/api', apiRouter);
 app.use(router);
 
 mongoose.connect(dbUri);
-mongoose.connection.on('connected', () => console.log('DB is Connected!'));
-mongoose.connection.on('disconnected', () => console.log('DB is Disconnected!'));
+mongoose.connection.on('connected', () => console.log('DB is Connected! Success!'));
+mongoose.connection.on('disconnected', () => console.log('DB is Disconnected! Uh-ouh...'));
 mongoose.connection.on('error', (err) => console.log('DB Error: ' + err));
 
-app.listen(dbPort, () => console.log(`App is listening on http://localhost:${dbPort}`));
+app.listen(dbPort, () => console.log(`App is listening on http://localhost:${dbPort} ! We are good to go!`));
