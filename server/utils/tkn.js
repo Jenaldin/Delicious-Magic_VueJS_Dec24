@@ -1,4 +1,4 @@
-import { sign } from './jwt';
+import { sign } from './jwt.js';
 const secret = process.env.SECRET || 'vape1097#%%#34yhx148fiuwehfi&*@ushering9357m30945rc1mh19';
 
 export function generateToken(user) {

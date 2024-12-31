@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import { generateToken } from "../utils/tkn";
-import userModel from "../models/userModel";
+import { generateToken } from "../utils/tkn.js";
+import userModel from "../models/userModel.js";
 
 export const register = async (userData) => {
   try {

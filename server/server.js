@@ -6,9 +6,9 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-import apiRouter from './routes';
-import router from './router';
-import { authMiddleware } from './middlewares/authMiddleware';
+import apiRouter from './routes/index.js';
+import router from './router.js';
+import { authMiddleware } from './middlewares/authMiddleware.js';
 
 const app = express();
 const dbUri = process.env.DB_URI || 'mongodb://127.0.0.1:27017/JennyGutevaVueJSExamProject';
@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.use('/api', apiRouter);
 app.use(router);
 
-mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbUri);
 mongoose.connection.on('connected', () => console.log('DB is Connected!'));
 mongoose.connection.on('disconnected', () => console.log('DB is Disconnected!'));
 mongoose.connection.on('error', (err) => console.log('DB Error: ' + err));
