@@ -1,12 +1,51 @@
 <script setup>
+import Navigation from './components/Navigation.vue';
+import Footer from './components/Footer.vue';
+</script>
+
+<template>
+  <v-app>
+    <v-app-bar app>
+      <Navigation />
+    </v-app-bar>
+    
+    <v-main>
+      <router-view />
+    </v-main>
+
+    <v-footer app>
+      <Footer />
+    </v-footer>
+  </v-app>
+</template>
+
+<style scoped>
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+main {
+  padding: 16px;
+}
+
+footer {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 16px;
+  border-top: 1px solid #e7e7e7;
+}
+</style>
+
+
+
+<!-- <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
@@ -82,4 +121,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style> -->
