@@ -1,7 +1,4 @@
-<script>
-export default {
-  name: 'Navigation',
-};
+<script setup>
 </script>
 
 <template>
