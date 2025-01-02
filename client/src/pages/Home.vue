@@ -5,7 +5,7 @@
   <main>
     <div class="centered-content">
       <h1>Hello, Chef!</h1>
-      <h2>Welcome to the Delicious Magic Recipes!</h2>
+      <h2>Welcome to the Delicious Magic!</h2>
     </div>
     <div class="main-info">
       <h3>Here is a little bit of information what can you find here:</h3>
@@ -25,8 +25,8 @@
       </ul>
     </div>
     <div class="centered-content">
-      <h3>If you wish to know more about Delicious Magic Recipes, check out the About page</h3>
-      <h4>Happy cooking and mixing!</h4>
+      <h3>If you wish to know more about Delicious Magic, check out the <router-link to="/about">About page</router-link></h3>
+      <h4>Happy cooking, mixing and delicious magic!</h4>
     </div>
   </main>
 </template>

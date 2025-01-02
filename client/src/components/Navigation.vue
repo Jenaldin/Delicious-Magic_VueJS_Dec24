@@ -4,7 +4,7 @@
 <template>
    <v-toolbar>
       <v-img src="magic_large.png"></v-img>
-      <v-toolbar-title>Delicious Magic Recipes</v-toolbar-title>
+      <v-toolbar-title>Delicious Magic</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn color="amber-darken-1" text to="/">Home</v-btn>
       <v-btn color="amber-darken-1" text to="/*">All Recipes</v-btn>
