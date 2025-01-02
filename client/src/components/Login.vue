@@ -1,13 +1,92 @@
 <script setup>
+import { ref } from 'vue';
+import axios from 'axios';
+import useVuelidate from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
+import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
+
+const form = ref({
+  username: '',
+  password: ''
+});
+
+const rules = {
+  username: { required },
+  password: { required }
+};
+
+const v$ = useVuelidate(rules, form);
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+// Snackbar state
+const snackbar = ref({
+  show: false,
+  message: '',
+  color: 'success'
+});
+
+const login = async () => {
+  v$.value.$touch();
+  if (v$.value.$invalid) {
+    snackbar.value = {
+      show: true,
+      message: 'Please fill in all fields.',
+      color: 'error'
+    };
+    return;
+  }
+
+  try {
+    const response = await axios.post('http://localhost:3000/api/user/login', form.value);
+    const { token, username, id } = response.data;
+
+    document.cookie = `auth=${token}; path=/`;
+    authStore.login({ username, id });
+
+    snackbar.value = {
+      show: true,
+      message: 'Login successful!',
+      color: 'success'
+    };
+
+    setTimeout(() => {
+      router.push('/');
+    }, 1000);
+  } catch (error) {
+    snackbar.value = {
+      show: true,
+      message: error.response.data.error || 'Login failed. Please try again.',
+      color: 'error'
+    };
+  }
+};
 </script>
 
 <template>
-   <v-form>
-     <v-text-field label="Email" required></v-text-field>
-     <v-text-field label="Password" type="password" required></v-text-field>
-     <v-btn type="submit" color="amber-darken-1">Login</v-btn>
-   </v-form>
- </template>
- 
- <style scoped>
- </style>
+  <v-form @submit.prevent="login">
+    <v-text-field
+      v-model="form.username"
+      label="Username"
+      :error-messages="v$.username.$errors.map(e => e.$message)"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="form.password"
+      label="Password"
+      type="password"
+      :error-messages="v$.password.$errors.map(e => e.$message)"
+      required
+    ></v-text-field>
+    <v-btn type="submit" color="amber-darken-1">Login</v-btn>
+  </v-form>
+
+  <v-snackbar v-model="snackbar.show" :color="snackbar.color" top>
+    {{ snackbar.message }}
+  </v-snackbar>
+</template>
+
+<style scoped>
+</style>
