@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       validate: {
          validator: function (value) {
-            return validator.isURL(value) && /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(value);
+            return value === '' || (validator.isURL(value) && /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(value));
          },
          message: 'Invalid avatar link',
       },

@@ -4,7 +4,7 @@ import userModel from "../models/userModel.js";
 
 export const register = async (userData) => {
   try {
-    if (userData.password !== userData.rePass) {
+    if (userData.password !== userData.repassword) {
       throw new Error("Password mismatch");
     }
 

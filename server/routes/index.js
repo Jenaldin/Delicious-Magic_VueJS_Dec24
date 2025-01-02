@@ -2,6 +2,7 @@ import express from 'express';
 import auth from './authRoute.js';
 const apiRouter = express.Router();
 
+apiRouter.use('/user', auth);
 apiRouter.use('/', function (req, res) {
    res.send(`<div><h3>Speak Friend And Enter!</h3></div>
    <div><h3><i>- Gandalf the Gray, Lord of the Rings, J.R.R. Tolkien</i></h3></div>
@@ -9,6 +10,5 @@ apiRouter.use('/', function (req, res) {
    <div><h3>You have reached the test location, confirming that the API routes are functional.</h3></div>
    <div><h3>Please use the front-end application for more. Thank you!</h3></div>`);
 });
-apiRouter.use('/user', auth);
 
 export default apiRouter;

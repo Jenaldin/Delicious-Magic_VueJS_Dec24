@@ -14,7 +14,7 @@ const app = express();
 const dbUri = process.env.DB_URI || 'mongodb://127.0.0.1:27017/JennyGutevaVueJSExamProject';
 const dbPort = process.env.DB_PORT || '3000';
 
-app.use(cors({ origin: ' ', credentials: true }));
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());

@@ -2,6 +2,7 @@ import { register, login } from "../services/authService.js";
 
 const registerUser = async (req, res) => {
   const userData = req.body;
+  
   try {
     const result = await register(userData);
     const { token, username, id } = result;
