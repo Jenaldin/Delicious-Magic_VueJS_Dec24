@@ -1,11 +1,20 @@
 <script setup>
+import { useAuthStore } from '@/stores/auth';
+
+const authStore = useAuthStore();
 </script>
 
 <template>
   <main>
     <div class="centered-content">
-      <h1>Hello, Chef!</h1>
-      <h2>Welcome to the Delicious Magic!</h2>
+      <template v-if="authStore.isAuthenticated">
+        <h1>Hello, Chef {{ authStore.username }}!</h1>
+        <h2>Welcome back to the Delicious Magic!</h2>
+      </template>
+      <template v-else>
+        <h1>Hello, Chef!</h1>
+        <h2>Welcome to the Delicious Magic!</h2>
+      </template>
     </div>
     <div class="main-info">
       <h3>Here is a little bit of information what can you find here:</h3>
