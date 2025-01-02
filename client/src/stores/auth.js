@@ -1,10 +1,17 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import axios from 'axios';
 
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false);
   const username = ref('');
   const userId = ref('');
+
+  const snackbar = ref({
+    show: false,
+    message: '',
+    color: 'success'
+  });
 
   function login(user) {
     isAuthenticated.value = true;
@@ -15,11 +22,27 @@ export const useAuthStore = defineStore('auth', () => {
     }, 3 * 60 * 60 * 1000);
   }
 
-  function logout() {
-    isAuthenticated.value = false;
-    username.value = '';
-    userId.value = '';
-    document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+  async function logout() {
+    try {
+      await axios.post('http://localhost:3000/api/user/logout');
+
+      isAuthenticated.value = false;
+      username.value = '';
+      userId.value = '';
+      document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      
+      snackbar.value = {
+        show: true,
+        message: 'Logout successful!',
+        color: 'success'
+      };
+    } catch (error) {
+      snackbar.value = {
+        show: true,
+        message: 'Logout failed. Please try again.',
+        color: 'error'
+      };
+    }
   }
 
   function checkAuth() {
@@ -29,6 +52,5 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
   checkAuth();
-
-  return { isAuthenticated, username, userId, login, logout };
+  return { isAuthenticated, username, userId, snackbar, login, logout };
 });
