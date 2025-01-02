@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
    email: {
       type: String,
       minlength: [5, 'Email should be at least 5 characters'],
-      maxlength: [20, 'Email should be no more than 20 characters'],
+      maxlength: [15, 'Email should be no more than 15 characters'],
       lowercase: true,
       required: [true, 'Email is required'],
       validate: {
@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
    password: {
       type: String,
       minlength: [4, 'Password should be at least 4 characters'],
-      maxlength: [20, 'Password should be no more than 20 characters'],
+      maxlength: [12, 'Password should be no more than 12 characters'],
       required: [true, 'Password is required'],
    },
    avatar: {
@@ -42,10 +42,14 @@ const userSchema = new mongoose.Schema({
    },
    aboutMe: {
       type: String,
-      maxlength: [1000, 'About me maximal length is 1000 symbols'],
+      maxlength: [500, 'About me maximal length is 500 symbols'],
       default: ' ',
    },
    recipesOwned: [{
+      type: mongoose.Types.ObjectId,
+      ref: 'Recipe',
+   }],
+   recipesCopied: [{
       type: mongoose.Types.ObjectId,
       ref: 'Recipe',
    }],
