@@ -4,6 +4,7 @@ import useVuelidate from '@vuelidate/core';
 import { required, minLength, maxLength, email, sameAs, url } from '@vuelidate/validators';
 import axios from 'axios';
 import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
 
 const form = ref({
   username: '',
@@ -29,26 +30,49 @@ const rules = computed(() => ({
 const v$ = useVuelidate(rules, form);
 
 const authStore = useAuthStore();
+const router = useRouter();
+
+const snackbar = ref({
+  show: false,
+  message: '',
+  color: 'success'
+});
 
 const register = async () => {
   v$.value.$touch();
 
   if (v$.value.$invalid) {
-    console.log('Form is invalid');
+    snackbar.value = {
+      show: true,
+      message: 'Please fill in all fields correctly.',
+      color: 'error'
+    };
     return;
   }
 
   try {
-  const response = await axios.post('http://localhost:3000/api/user/register', form.value);
-  const { token, username, id } = response.data;
+    const response = await axios.post('http://localhost:3000/api/user/register', form.value);
+    const { token, username, id } = response.data;
 
-  document.cookie = `auth=${token}; path=/`;
-  authStore.login({username, id});
+    document.cookie = `auth=${token}; path=/`;
+    authStore.login({ username, id });
 
-  window.location.href = '/';
-} catch (error) {
-  console.error('Registration error:', error.response.data.error);
-}
+    snackbar.value = {
+      show: true,
+      message: 'Registration successful!',
+      color: 'success'
+    };
+
+    setTimeout(() => {
+      router.push('/');
+    }, 1000);
+  } catch (error) {
+    snackbar.value = {
+      show: true,
+      message: error.response.data.error || 'Registration failed. Please try again.',
+      color: 'error'
+    };
+  }
 };
 </script>
 
@@ -104,6 +128,10 @@ const register = async () => {
 
     <v-btn type="submit" color="amber-darken-1">Register</v-btn>
   </v-form>
+
+  <v-snackbar v-model="snackbar.show" :color="snackbar.color" top>
+    {{ snackbar.message }}
+  </v-snackbar>
 </template>
 
 <style scoped>
