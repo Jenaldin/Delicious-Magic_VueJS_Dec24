@@ -5,7 +5,6 @@ import { required, minLength, maxLength, email, sameAs, url } from '@vuelidate/v
 import axios from 'axios';
 import { useAuthStore } from '@/stores/auth';
 
-// Form data
 const form = ref({
   username: '',
   email: '',
@@ -13,15 +12,12 @@ const form = ref({
   repassword: '',
   avatar: ''
 });
-
-// Visibility state 
+ 
 const showPassword = ref(false); 
 const showRepassword = ref(false);
 
-// Storing password value in a constant
 const passwordValue = computed(() => form.value.password);
 
-// Validation rules
 const rules = computed(() => ({
   username: { required, minLength: minLength(3), maxLength: maxLength(10) },
   email: { required, email, minLength: minLength(5), maxLength: maxLength(15) },
@@ -30,10 +26,8 @@ const rules = computed(() => ({
   avatar: { url }
 }));
 
-// Use Vuelidate
 const v$ = useVuelidate(rules, form);
 
-// Auth store
 const authStore = useAuthStore();
 
 const register = async () => {
@@ -47,13 +41,10 @@ const register = async () => {
   try {
   const response = await axios.post('http://localhost:3000/api/user/register', form.value);
   const { token, username, id } = response.data;
-  console.log(response.data);
 
-  // Set authentication state
   document.cookie = `auth=${token}; path=/`;
-  authStore.login(); // Call login after setting the cookie
+  authStore.login({username, id});
 
-  // Redirect to home or another page
   window.location.href = '/';
 } catch (error) {
   console.error('Registration error:', error.response.data.error);
