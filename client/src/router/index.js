@@ -6,8 +6,8 @@ const routes = [
   { path: '/', name: 'home', component: () => import('../pages/Home.vue') },
   { path: '/about', name: 'about', component: () => import('../pages/About.vue') },
   { path: '/register-login', name: 'register-login', component: Entry },
+  { path: '/:pathMatch(.*)*', name: '404', component: () => import('../pages/PageNotFound.vue') },
 ];
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
