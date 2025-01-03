@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import { useAuthStore } from '@/stores/auth';
@@ -28,6 +28,9 @@ const snackbar = ref({
   message: '',
   color: 'success'
 });
+
+const usernameErrors = computed(() => v$.value.username.$errors.map(e => e.$message));
+const passwordErrors = computed(() => v$.value.password.$errors.map(e => e.$message));
 
 const loginUser = async () => {
   v$.value.$touch();
@@ -69,15 +72,15 @@ const loginUser = async () => {
 <template>
   <v-form @submit.prevent="loginUser">
     <v-text-field
-      v-model="form.username"
+      v-model.trim="form.username"
       label="Username"
-      :error-messages="v$.username.$errors.map(e => e.$message)"
+      :error-messages="usernameErrors"
       required
     ></v-text-field>
 
     <v-text-field
-      v-model="form.password"
-      :error-messages="v$.password.$errors.map(e => e.$message)"
+      v-model.trim="form.password"
+      :error-messages="passwordErrors"
       :type="showPassword ? 'text' : 'password'"
       label="Password"
       required

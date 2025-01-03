@@ -38,6 +38,12 @@ const snackbar = ref({
   color: 'success'
 });
 
+const usernameErrors = computed(() => v$.value.username.$errors.map(e => e.$message));
+const emailErrors = computed(() => v$.value.email.$errors.map(e => e.$message));
+const passwordErrors = computed(() => v$.value.password.$errors.map(e => e.$message));
+const repasswordErrors = computed(() => v$.value.repassword.$errors.map(e => e.$message));
+const avatarErrors = computed(() => v$.value.avatar.$errors.map(e => e.$message));
+
 const registerUser = async () => {
   v$.value.$touch();
 
@@ -79,22 +85,22 @@ const registerUser = async () => {
 <template>
   <v-form @submit.prevent="registerUser">
     <v-text-field
-      v-model="form.username"
-      :error-messages="v$.username.$errors.map(e => e.$message)"
+      v-model.trim="form.username"
+      :error-messages="usernameErrors"
       label="Username"
       required
     ></v-text-field>
 
     <v-text-field
-      v-model="form.email"
-      :error-messages="v$.email.$errors.map(e => e.$message)"
+      v-model.trim="form.email"
+      :error-messages="emailErrors"
       label="Email"
       required
     ></v-text-field>
 
     <v-text-field
-      v-model="form.password"
-      :error-messages="v$.password.$errors.map(e => e.$message)"
+      v-model.trim="form.password"
+      :error-messages="passwordErrors"
       :type="showPassword ? 'text' : 'password'"
       label="Password"
       required
@@ -107,8 +113,8 @@ const registerUser = async () => {
     </v-text-field>
 
     <v-text-field
-      v-model="form.repassword"
-      :error-messages="v$.repassword.$errors.map(e => e.$message)"
+      v-model.trim="form.repassword"
+      :error-messages="repasswordErrors"
       :type="showRepassword ? 'text' : 'password'"
       label="Confirm Password"
       required
@@ -121,8 +127,8 @@ const registerUser = async () => {
     </v-text-field>
 
     <v-text-field
-      v-model="form.avatar"
-      :error-messages="v$.avatar.$errors.map(e => e.$message)"
+      v-model.trim="form.avatar"
+      :error-messages="avatarErrors"
       label="Avatar URL"
     ></v-text-field>
 
