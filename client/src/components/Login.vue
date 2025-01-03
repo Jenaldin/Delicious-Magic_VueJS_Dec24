@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
+import { login } from '@/api/authUser';
 
 const form = ref({
   username: '',
@@ -23,14 +23,13 @@ const v$ = useVuelidate(rules, form);
 const authStore = useAuthStore();
 const router = useRouter();
 
-// Snackbar state
 const snackbar = ref({
   show: false,
   message: '',
   color: 'success'
 });
 
-const login = async () => {
+const loginUser = async () => {
   v$.value.$touch();
   if (v$.value.$invalid) {
     snackbar.value = {
@@ -42,8 +41,8 @@ const login = async () => {
   }
 
   try {
-    const response = await axios.post('http://localhost:3000/api/user/login', form.value);
-    const { token, username, id } = response.data;
+    const data = await login(form.value);
+    const { token, username, id } = data;
 
     document.cookie = `auth=${token}; path=/`;
     authStore.login({ username, id });
@@ -68,7 +67,7 @@ const login = async () => {
 </script>
 
 <template>
-  <v-form @submit.prevent="login">
+  <v-form @submit.prevent="loginUser">
     <v-text-field
       v-model="form.username"
       label="Username"

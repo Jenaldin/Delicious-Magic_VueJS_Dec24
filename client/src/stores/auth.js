@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import axios from 'axios';
+import { logout as apiLogout } from '@/api/authUser';
 
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false);
@@ -24,7 +24,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function logout() {
     try {
-      await axios.post('http://localhost:3000/api/user/logout');
+      await apiLogout();
 
       isAuthenticated.value = false;
       username.value = '';

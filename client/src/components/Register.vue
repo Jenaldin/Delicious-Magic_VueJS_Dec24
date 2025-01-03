@@ -2,9 +2,9 @@
 import { ref, computed } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, minLength, maxLength, email, sameAs, url } from '@vuelidate/validators';
-import axios from 'axios';
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
+import { register } from '@/api/authUser';
 
 const form = ref({
   username: '',
@@ -13,7 +13,7 @@ const form = ref({
   repassword: '',
   avatar: ''
 });
- 
+
 const showPassword = ref(false); 
 const showRepassword = ref(false);
 
@@ -38,7 +38,7 @@ const snackbar = ref({
   color: 'success'
 });
 
-const register = async () => {
+const registerUser = async () => {
   v$.value.$touch();
 
   if (v$.value.$invalid) {
@@ -51,8 +51,8 @@ const register = async () => {
   }
 
   try {
-    const response = await axios.post('http://localhost:3000/api/user/register', form.value);
-    const { token, username, id } = response.data;
+    const data = await register(form.value);
+    const { token, username, id } = data;
 
     document.cookie = `auth=${token}; path=/`;
     authStore.login({ username, id });
@@ -77,7 +77,7 @@ const register = async () => {
 </script>
 
 <template>
-  <v-form @submit.prevent="register">
+  <v-form @submit.prevent="registerUser">
     <v-text-field
       v-model="form.username"
       :error-messages="v$.username.$errors.map(e => e.$message)"
