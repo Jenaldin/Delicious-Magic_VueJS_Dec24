@@ -1,14 +1,17 @@
 <script setup>
+import { computed } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 
 const authStore = useAuthStore();
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+const username = computed(() => authStore.username);
 </script>
 
 <template>
   <main>
     <div class="centered-content">
-      <template v-if="authStore.isAuthenticated">
-        <h1>Hello, Chef {{ authStore.username }}!</h1>
+      <template v-if="isAuthenticated">
+        <h1>Hello, Chef {{ username }}!</h1>
         <h2>Welcome back to the Delicious Magic!</h2>
       </template>
       <template v-else>

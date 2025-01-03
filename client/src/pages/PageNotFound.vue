@@ -10,7 +10,7 @@
     <div class="centered-content">
       <p>We tried to find the page you navigated to, but it does not exist. </p>
       <p>The link you tried to follow might be broken, the page might have been removed or might not exist yet.</p>
-      <p>Try navigating back <router-link to="/home">Home</router-link> and go from there.</p>
+      <p>Try navigating back <router-link to="/">Home</router-link> and go from there.</p>
     </div>
     <div class="centered-content">
       <h4>Thank you for visiting!</h4>
