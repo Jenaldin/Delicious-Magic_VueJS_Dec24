@@ -92,7 +92,7 @@ const loginUser = async () => {
       </template>
     </v-text-field>
 
-    <v-btn type="submit" color="amber-darken-1">Login</v-btn>
+    <v-btn type="submit" color="amber">Login</v-btn>
   </v-form>
 
   <v-snackbar v-model="snackbar.show" :color="snackbar.color" top>

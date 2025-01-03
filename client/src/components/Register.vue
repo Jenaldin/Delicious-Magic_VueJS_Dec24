@@ -132,7 +132,7 @@ const registerUser = async () => {
       label="Avatar URL"
     ></v-text-field>
 
-    <v-btn type="submit" color="amber-darken-1">Register</v-btn>
+    <v-btn type="submit" color="amber">Register</v-btn>
   </v-form>
 
   <v-snackbar v-model="snackbar.show" :color="snackbar.color" top>
