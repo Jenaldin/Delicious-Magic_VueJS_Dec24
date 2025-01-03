@@ -11,6 +11,8 @@ const form = ref({
   password: ''
 });
 
+const showPassword = ref(false);
+
 const rules = {
   username: { required },
   password: { required }
@@ -73,13 +75,21 @@ const login = async () => {
       :error-messages="v$.username.$errors.map(e => e.$message)"
       required
     ></v-text-field>
+
     <v-text-field
       v-model="form.password"
-      label="Password"
-      type="password"
       :error-messages="v$.password.$errors.map(e => e.$message)"
+      :type="showPassword ? 'text' : 'password'"
+      label="Password"
       required
-    ></v-text-field>
+    >
+      <template #append>
+        <v-icon @click="showPassword = !showPassword">
+          <i :class="showPassword ? 'mdi mdi-eye-off' : 'mdi mdi-eye'"></i>
+        </v-icon>
+      </template>
+    </v-text-field>
+
     <v-btn type="submit" color="amber-darken-1">Login</v-btn>
   </v-form>
 
