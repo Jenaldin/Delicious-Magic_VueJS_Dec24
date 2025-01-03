@@ -1,7 +1,10 @@
 <script setup>
+import { computed } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 
 const authStore = useAuthStore();
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+const snackbar = computed(() => authStore.snackbar);
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const authStore = useAuthStore();
     <v-btn color="amber-darken-1" text to="/">Home</v-btn>
     <v-btn color="amber-darken-1" text to="/about">About</v-btn>
     <v-btn color="amber-darken-1" text to="/*">All Recipes</v-btn>
-    <template v-if="!authStore.isAuthenticated">
+    <template v-if="!isAuthenticated">
       <v-btn color="amber-darken-1" text to="/register-login">Login or Register</v-btn>
     </template>
     <template v-else>
@@ -21,8 +24,8 @@ const authStore = useAuthStore();
     </template>
   </v-toolbar>
 
-  <v-snackbar v-model="authStore.snackbar.show" :color="authStore.snackbar.color" top>
-    {{ authStore.snackbar.message }}
+  <v-snackbar v-model="snackbar.show" :color="snackbar.color" top>
+    {{ snackbar.message }}
   </v-snackbar>
 </template>
 
