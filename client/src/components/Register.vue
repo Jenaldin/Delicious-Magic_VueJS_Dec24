@@ -35,7 +35,7 @@ const router = useRouter();
 const snackbar = ref({
   show: false,
   message: '',
-  color: 'success'
+  color: 'green-darken-4'
 });
 
 const usernameErrors = computed(() => v$.value.username.$errors.map(e => e.$message));
@@ -51,7 +51,7 @@ const registerUser = async () => {
     snackbar.value = {
       show: true,
       message: 'Please fill in all fields correctly.',
-      color: 'error'
+      color: 'red-darken-4'
     };
     return;
   }
@@ -66,7 +66,7 @@ const registerUser = async () => {
     snackbar.value = {
       show: true,
       message: 'Registration successful!',
-      color: 'success'
+      color: 'green-darken-4'
     };
 
     setTimeout(() => {
@@ -76,7 +76,7 @@ const registerUser = async () => {
     snackbar.value = {
       show: true,
       message: error.response.data.error || 'Registration failed. Please try again.',
-      color: 'error'
+      color: 'red-darken-4'
     };
   }
 };

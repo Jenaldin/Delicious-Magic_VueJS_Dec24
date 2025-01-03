@@ -26,7 +26,7 @@ const router = useRouter();
 const snackbar = ref({
   show: false,
   message: '',
-  color: 'success'
+  color: 'green-darken-4'
 });
 
 const usernameErrors = computed(() => v$.value.username.$errors.map(e => e.$message));
@@ -38,7 +38,7 @@ const loginUser = async () => {
     snackbar.value = {
       show: true,
       message: 'Please fill in all fields.',
-      color: 'error'
+      color: 'red-darken-4'
     };
     return;
   }
@@ -53,7 +53,7 @@ const loginUser = async () => {
     snackbar.value = {
       show: true,
       message: 'Login successful!',
-      color: 'success'
+      color: 'green-darken-4'
     };
 
     setTimeout(() => {
@@ -63,7 +63,7 @@ const loginUser = async () => {
     snackbar.value = {
       show: true,
       message: error.response.data.error || 'Login failed. Please try again.',
-      color: 'error'
+      color: 'red-darken-4'
     };
   }
 };

@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('auth', () => {
   const snackbar = ref({
     show: false,
     message: '',
-    color: 'success'
+    color: 'green-darken-4'
   });
 
   function login(user) {
@@ -34,13 +34,13 @@ export const useAuthStore = defineStore('auth', () => {
       snackbar.value = {
         show: true,
         message: 'Logout successful!',
-        color: 'success'
+        color: 'green-darken-4'
       };
     } catch (error) {
       snackbar.value = {
         show: true,
         message: 'Logout failed. Please try again.',
-        color: 'error'
+        color: 'red-darken-4'
       };
     }
   }
