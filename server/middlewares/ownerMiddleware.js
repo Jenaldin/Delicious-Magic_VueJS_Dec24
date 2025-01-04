@@ -1,5 +1,6 @@
 import { getOwnership } from "../services/recipeService.js";
 import { getOwner } from "../services/authService.js";
+import { getOwnerComm } from "../services/commentService.js";
 
 const isRecipeOwner = async (req, res, next) => {
    const recipeId = req.params.recipeId;
@@ -35,4 +36,21 @@ const isProfileOwner = async (req, res, next) => {
    }
 };
 
-export { isRecipeOwner, isProfileOwner };
+const isCommentOwner = async (req, res, next) => {
+   const commentId = req.params.commentId;
+   try {
+      const comment = await getOwnerComm({_id: commentId});
+      if (!comment) {
+         return res.status(404).json({ error: 'Comment not found.' });
+      }
+      if (comment.owner.toString() !== req.user._id.toString()) {
+         return res.status(403).json({ error: 'Not authorized to edit/delete this comment.' });
+      }
+      req.comment = comment;
+      next();
+   } catch (error) {
+      res.status(500).json({ error: 'Internal server error: ' + error.message });
+   }
+};
+
+export { isRecipeOwner, isProfileOwner, isCommentOwner };
