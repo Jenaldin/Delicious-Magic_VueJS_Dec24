@@ -9,6 +9,7 @@ import cors from 'cors';
 import apiRouter from './routes/index.js';
 import router from './router.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
+import errorHandler from './middlewares/errorHandlerMiddleware.js';
 
 const app = express();
 const dbUri = process.env.DB_URI || 'mongodb://127.0.0.1:27017/JennyGutevaVueJSExamProject';
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(authMiddleware);
+app.use(errorHandler);
 app.use(express.static('public'));
 app.use('/api', apiRouter);
 app.use(router);
