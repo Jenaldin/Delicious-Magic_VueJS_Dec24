@@ -7,7 +7,7 @@ const registerUser = async (req, res) => {
     const result = await register(userData);
     const { token, username, id } = result;
     res
-      .status(200)
+      .status(201)
       .json({ message: "Registration successful", token, username, id });
   } catch (err) {
     res.status(400).json({ error: err.message });
