@@ -5,7 +5,7 @@ const registerUser = async (req, res) => {
   try {
     const result = await register(userData);
     const { token, username, id } = result;
-    res.status(201).json({ message: "Registration successful", token, username, id });
+    res.status(200).json({ message: "Registration successful", token, username, id });
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(400).json({ error: 'Invalid data: ' + error.message });

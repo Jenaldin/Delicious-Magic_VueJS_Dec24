@@ -68,7 +68,7 @@ const deleteRecipe = async (req, res) => {
    const { recipeId } = req.params;
    try {
       await del(recipeId);
-      res.status(204).json({message: 'Recipe and references to it have been deleted.'})
+      res.status(200).json({message: 'Recipe and references to it have been deleted.'})
    } catch (error) {
       if (error.message.includes('Not a valid recipe ID')) {
          res.status(400).json({ error: error.message });
