@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Types.ObjectId,
       ref: 'Recipe',
    }],
-   recipesCopied: [{
+   favorites: [{
       type: mongoose.Types.ObjectId,
       ref: 'Recipe',
    }],
