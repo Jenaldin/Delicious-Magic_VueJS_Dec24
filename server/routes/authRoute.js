@@ -11,6 +11,6 @@ router.get('/logout', isAuth, logoutUser);
 
 router.get('/:userId', isAuth, getUser);
 router.get('/edit/:userId', isProfileOwner, editUser);
-router.patch('/addFav', addFavorite);
+router.patch('/addFav', isAuth, addFavorite);
 
 export default router;
