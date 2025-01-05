@@ -15,6 +15,15 @@ const recipeSchema = new mongoose.Schema({
       },
       required: [true, 'Type is required']
    },
+   image: {
+      type: String,
+      validate: {
+         validator: function (value) {
+            return value === '' || (validator.isURL(value) && /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(value));
+         },
+         message: 'Invalid image link',
+      },
+   },
    ingredients: [{ 
       type: String, 
       required: true 
