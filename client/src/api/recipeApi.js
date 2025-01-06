@@ -15,6 +15,11 @@ export const addRecipe = async (formdata) => {
   return response.data
 };
 
+export const editRecipe = async (recipeId, formdata) => {
+  const response = await axiosApi.put(`/catalog/edit/${recipeId}`, formdata);
+  return response.data
+}
+
 export const deleteRecipe = async (recipeId) => {
   const response = await axiosApi.delete(`/catalog/delete/${recipeId}`);
   return response.data
