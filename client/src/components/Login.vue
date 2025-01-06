@@ -46,9 +46,7 @@ const loginUser = async () => {
   try {
     const data = await login(form.value);
     const { token, username, id } = data;
-
-    document.cookie = `auth=${token}; path=/`;
-    authStore.login({ username, id });
+    authStore.login({ token, username, id });
 
     snackbar.value = {
       show: true,

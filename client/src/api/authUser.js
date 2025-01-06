@@ -19,7 +19,7 @@ export const logout = async () => {
 
 export const addFavorite = async (userId, recipeId) => {
   try {
-    const response = await axiosApi.patch('/user/addFav', { userId, recipeId });
+    const response = await axiosApi.patch(`${API_URL}/addFav`, { userId, recipeId });
     return response.data;
   } catch (error) {
     throw new Error('Error adding recipe to favorites: ' + error.message);
