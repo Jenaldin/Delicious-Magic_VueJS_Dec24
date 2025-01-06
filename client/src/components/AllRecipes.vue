@@ -1,11 +1,11 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
-import { useRecipeStore } from '../stores/recipeCatalogStore';
+import { useCatalogStore } from '../stores/catalogStore';
 import { useRouter } from 'vue-router';
 import { getAllRecipes } from '../api/recipeApi';
 import { formatDate } from '../utils/formatDates';
 
-const recipeStore = useRecipeStore();
+const catalogStore = useCatalogStore();
 const router = useRouter();
 
 const foodPage = ref(1);
@@ -22,11 +22,11 @@ const fetchRecipes = async (type, page) => {
   try {
     const data = await getAllRecipes(type, page, pageSize);
     if (type === 'food') {
-      recipeStore.foodRecipes = data.recipes;
-      recipeStore.foodTotal = data.total;
+      catalogStore.foodRecipes = data.recipes;
+      catalogStore.foodTotal = data.total;
     } else {
-      recipeStore.drinkRecipes = data.recipes;
-      recipeStore.drinkTotal = data.total;
+      catalogStore.drinkRecipes = data.recipes;
+      catalogStore.drinkTotal = data.total;
     }
   } catch (error) {
     snackbar.value = {
@@ -48,8 +48,8 @@ watch(drinkPage, (newPage) => {
   fetchRecipes('drink', newPage);
 });
 
-const foodRecipes = computed(() => recipeStore.foodRecipes);
-const drinkRecipes = computed(() => recipeStore.drinkRecipes);
+const foodRecipes = computed(() => catalogStore.foodRecipes);
+const drinkRecipes = computed(() => catalogStore.drinkRecipes);
 </script>
 
 <template>
@@ -81,7 +81,7 @@ const drinkRecipes = computed(() => recipeStore.drinkRecipes);
         </v-row>
         <v-pagination
           v-model="foodPage"
-          :length="Math.ceil(recipeStore.foodTotal / pageSize)"
+          :length="Math.ceil(catalogStore.foodTotal / pageSize)"
           color="teal-darken-3"
           class="pagin"
         />
@@ -113,7 +113,7 @@ const drinkRecipes = computed(() => recipeStore.drinkRecipes);
         </v-row>
         <v-pagination
           v-model="drinkPage"
-          :length="Math.ceil(recipeStore.drinkTotal / pageSize)"
+          :length="Math.ceil(catalogStore.drinkTotal / pageSize)"
           color="teal-darken-3"
           class="pagin"
         />

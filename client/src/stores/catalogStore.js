@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useRecipeStore = defineStore('recipe', {
+export const useCatalogStore = defineStore('recipe', {
   state: () => ({
     foodRecipes: [],
     foodTotal: 0,
