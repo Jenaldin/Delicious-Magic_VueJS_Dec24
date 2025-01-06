@@ -4,10 +4,15 @@ import User from "../models/userModel.js";
 
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
-const getAll = async (pageNumber, pageSize) => {
+const getAll = async (type, pageNumber, pageSize) => {
    try {
-      const recipes = await Recipe.find().skip((pageNumber - 1) * pageSize).limit(pageSize);
-      const total = await Recipe.countDocuments();
+      const recipes = await Recipe.find({type})
+         .sort({ createdAt: -1 })
+         .skip((pageNumber - 1) * pageSize)
+         .limit(pageSize)
+         .populate('owner', 'username')
+         .lean();
+      const total = await Recipe.countDocuments({ type });
       return { recipes, total };
    } catch (error) {
       throw new Error('Error fetching recipes: ' + error.message);
