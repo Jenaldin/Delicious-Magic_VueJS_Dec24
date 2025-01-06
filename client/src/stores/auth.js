@@ -17,6 +17,11 @@ export const useAuthStore = defineStore('auth', () => {
     isAuthenticated.value = true;
     username.value = user.username;
     userId.value = user.id;
+
+    localStorage.setItem('username', user.username);
+    localStorage.setItem('userId', user.id);
+    document.cookie = `auth=${user.token}; path=/; max-age=${3 * 60 * 60}`;
+
     setTimeout(() => {
       logout();
     }, 3 * 60 * 60 * 1000);
@@ -25,12 +30,13 @@ export const useAuthStore = defineStore('auth', () => {
   async function logout() {
     try {
       await apiLogout();
-
       isAuthenticated.value = false;
       username.value = '';
       userId.value = '';
+      localStorage.removeItem('username');
+      localStorage.removeItem('userId');
       document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-      
+
       snackbar.value = {
         show: true,
         message: 'Logout successful!',
@@ -47,10 +53,16 @@ export const useAuthStore = defineStore('auth', () => {
 
   function checkAuth() {
     const authCookie = document.cookie.split('; ').find(row => row.startsWith('auth='));
-    if (authCookie) {
+    const usernameStored = localStorage.getItem('username');
+    const userIdStored = localStorage.getItem('userId');
+
+    if (authCookie && usernameStored && userIdStored) {
       isAuthenticated.value = true;
+      username.value = usernameStored;
+      userId.value = userIdStored;
     }
   }
+
   checkAuth();
   return { isAuthenticated, username, userId, snackbar, login, logout };
 });

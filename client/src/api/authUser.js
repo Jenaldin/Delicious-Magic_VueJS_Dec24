@@ -13,6 +13,15 @@ export const login = async (credentials) => {
 };
 
 export const logout = async () => {
-  const response = await axios.get(`${API_URL}/logout`, { withCredentials: true });
+  const response = await axios.get(`${API_URL}/logout`);
   return response.data;
+};
+
+export const addFavorite = async (userId, recipeId) => {
+  try {
+    const response = await axiosApi.patch('/user/addFav', { userId, recipeId });
+    return response.data;
+  } catch (error) {
+    throw new Error('Error adding recipe to favorites: ' + error.message);
+  }
 };
