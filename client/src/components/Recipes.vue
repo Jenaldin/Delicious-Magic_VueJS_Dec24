@@ -31,7 +31,7 @@ const fetchRecipes = async (type, page) => {
   } catch (error) {
     snackbar.value = {
       show: true,
-      message: 'Error fetching recipes: ' + error.message,
+      message: error.message,
       color: 'red-darken-4'
     };
   }
@@ -76,7 +76,7 @@ const drinkRecipes = computed(() => recipeStore.drinkRecipes);
             </v-col>
           </template>
           <template v-else>
-            <h4>No food scrolls yet </h4>
+            <h4>No food scrolls to show </h4>
           </template>
         </v-row>
         <v-pagination
@@ -108,7 +108,7 @@ const drinkRecipes = computed(() => recipeStore.drinkRecipes);
             </v-col>
           </template>
           <template v-else>
-            <h4>No drink scrolls yet</h4>
+            <h4>No drink scrolls to show</h4>
           </template>
         </v-row>
         <v-pagination
