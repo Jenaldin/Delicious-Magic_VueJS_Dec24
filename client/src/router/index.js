@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { useAuthStore } from '../stores/auth';
+import { useAuthStore } from '../stores/authStore';
 import Entry from '../pages/Entry.vue';
 import Catalog from '../pages/Catalog.vue';
 import Details from '../pages/Details.vue';

@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
-import { useAuthStore } from '../stores/auth';
+import { useAuthStore } from '../stores/authStore';
 import { useRouter } from 'vue-router';
 import { login } from '../api/authUserApi';
 

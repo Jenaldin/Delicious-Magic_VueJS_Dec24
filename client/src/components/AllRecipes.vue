@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
-import { useRecipeStore } from '../stores/recipe';
+import { useRecipeStore } from '../stores/recipeCatalogStore';
 import { useRouter } from 'vue-router';
 import { getAllRecipes } from '../api/recipeApi';
 import { formatDate } from '../utils/formatDates';

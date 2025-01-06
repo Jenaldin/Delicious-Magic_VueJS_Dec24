@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useAuthStore } from '../stores/auth';
+import { useAuthStore } from '../stores/authStore';
 import { getRecipe, rateRecipe, deleteRecipe } from '../api/recipeApi';
 import { addFavorite } from '../api/authUserApi';
 import { formatDate } from '../utils/formatDates';
