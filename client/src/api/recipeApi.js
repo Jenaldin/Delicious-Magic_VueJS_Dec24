@@ -10,6 +10,11 @@ export const getRecipe = async (recipeId) => {
   return response.data
 };
 
+export const addRecipe = async (formdata) => {
+  const response = await axiosApi.post('/catalog/add', formdata);
+  return response.data
+};
+
 export const deleteRecipe = async (recipeId) => {
   const response = await axiosApi.delete(`/catalog/delete/${recipeId}`);
   return response.data
