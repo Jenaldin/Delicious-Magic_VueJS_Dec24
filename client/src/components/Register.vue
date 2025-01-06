@@ -4,7 +4,7 @@ import useVuelidate from '@vuelidate/core';
 import { required, minLength, maxLength, email, sameAs, url } from '@vuelidate/validators';
 import { useAuthStore } from '../stores/auth';
 import { useRouter } from 'vue-router';
-import { register } from '../api/authUser';
+import { register } from '../api/authUserApi';
 
 const form = ref({
   username: '',

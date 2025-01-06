@@ -2,8 +2,8 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
-import { getRecipe, rateRecipe, deleteRecipe } from '../api/recipes';
-import { addFavorite } from '../api/authUser';
+import { getRecipe, rateRecipe, deleteRecipe } from '../api/recipeApi';
+import { addFavorite } from '../api/authUserApi';
 import { formatDate } from '../utils/formatDates';
 
 const route = useRoute();
