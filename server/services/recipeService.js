@@ -20,11 +20,11 @@ const getAll = async (type, pageNumber, pageSize) => {
 };
 
 const getOwnership = async (recipeId) => {
-   try {
+   try {      
       if (!isValidObjectId(recipeId)) {
          throw new Error('Not a valid recipe ID.');
-      }
-      return await Recipe.findOne(recipeId);
+      }    
+      return await Recipe.findOne({ _id: recipeId });
    } catch (error) {
       throw new Error('Error fetching recipe ownership: ' + error.message);
    }

@@ -4,7 +4,6 @@ const secret = process.env.SECRET || 'vape1097#%%#34yhx148fiuwehfi&*@ushering935
 
 export const authMiddleware = async (req, res, next) => {
   const token = req.cookies['auth'];
-
   if (!token) {
     return next();
   }

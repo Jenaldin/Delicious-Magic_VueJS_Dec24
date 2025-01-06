@@ -4,14 +4,14 @@ import { getOwnerComm } from "../services/commentService.js";
 
 const isRecipeOwner = async (req, res, next) => {
    const recipeId = req.params.recipeId;
-   try {
-      const recipe = await getOwnership({_id: recipeId});
+   try {         
+      const recipe = await getOwnership(recipeId);      
       if (!recipe) {
          return res.status(404).json({ error: 'Recipe not found.' });
       }
       if (recipe.owner.toString() !== req.user._id.toString()) {
          return res.status(403).json({ error: 'Not authorized to edit/delete this recipe.' });
-      }
+      }      
       req.recipe = recipe;
       next();
    } catch (error) {
@@ -22,7 +22,7 @@ const isRecipeOwner = async (req, res, next) => {
 const isProfileOwner = async (req, res, next) => {
    const userId = req.params.userId;
    try {
-      const user = await getOwner({_id: userId});
+      const user = await getOwner({userId});
       if (!user) {
          return res.status(404).json({ error: 'User not found.' });
       }
@@ -39,7 +39,7 @@ const isProfileOwner = async (req, res, next) => {
 const isCommentOwner = async (req, res, next) => {
    const commentId = req.params.commentId;
    try {
-      const comment = await getOwnerComm({_id: commentId});
+      const comment = await getOwnerComm({commentId});
       if (!comment) {
          return res.status(404).json({ error: 'Comment not found.' });
       }
