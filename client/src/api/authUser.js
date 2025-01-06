@@ -19,6 +19,6 @@ export const logout = async () => {
 };
 
 export const addFavorite = async (userId, recipeId) => {
-  const response = await axiosApi.put(`${API_URL}/addFav`, { userId, recipeId });
+  const response = await axiosApi.put(`/user/addFav`, { userId, recipeId });
   return response.data;
 };
