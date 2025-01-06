@@ -68,7 +68,9 @@ const del = async () => {
     snackbar.value.message = 'Recipe deleted successfully!';
     snackbar.value.color = 'green-darken-4';
     snackbar.value.show = true;
-    router.push('/');
+    setTimeout(() => {
+      router.push('/catalog');
+    }, 1000);
   } catch (error) {
     snackbar.value.message = error.response?.data?.error || error.message;
     snackbar.value.color = 'red-darken-4';
