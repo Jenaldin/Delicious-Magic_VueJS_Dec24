@@ -76,7 +76,7 @@ const drinkRecipes = computed(() => recipeStore.drinkRecipes);
             </v-col>
           </template>
           <template v-else>
-            <h4>No food scrolls yet</h4>
+            <h4>No food scrolls yet </h4>
           </template>
         </v-row>
         <v-pagination
