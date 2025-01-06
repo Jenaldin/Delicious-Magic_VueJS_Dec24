@@ -1,5 +1,5 @@
 <script setup>
-import Recipes from '../components/Recipes.vue';
+import AllRecipes from '../components/AllRecipes.vue';
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import Recipes from '../components/Recipes.vue';
       <h1>The Big Cookbook</h1>
       <h2>All recipes</h2>
    </div>
-    <Recipes />
+    <AllRecipes />
   </v-container>
 </template>
 
