@@ -19,10 +19,10 @@ const isView = computed(() => route.name === 'view-recipe');
       <NewRecipe />
     </template>
     <template v-if="isEdit">
-      <EditRecipe :id="route.params.id" />
+      <EditRecipe />
     </template>
     <template v-if="isView">
-      <ViewRecipe :id="route.params.id" />
+      <ViewRecipe />
     </template>
   </div>
 </template>
