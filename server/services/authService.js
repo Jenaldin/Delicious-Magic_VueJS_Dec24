@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import bcrypt from "bcrypt";
 import { generateToken } from "../utils/tkn.js";
 import User from "../models/userModel.js";
@@ -80,7 +81,7 @@ const edit = async (userId, payloadData) => {
 };
 
 const favorites = async (userId, recipeId) => {
-  try {
+  try {   
     if(!isValidObjectId(userId) || !isValidObjectId(recipeId)){
       throw new Error('Not a valid user or recipe ID.');
   }
@@ -91,10 +92,10 @@ const favorites = async (userId, recipeId) => {
     if(user.favorites.includes(recipeId)){
       throw new Error('Recipe already in favorites.')
     }
-    user.favorites.push(recipeId);
-    await user.save();
+    await User.findByIdAndUpdate(userId, { $push: { favorites: recipeId }});
     return 'Recipe added to favorites successfully.'
   } catch (error) {
+    console.log(error.message);
     throw new Error('Error adding recipe to favorites: ' + error.message)
   }
 };

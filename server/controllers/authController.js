@@ -74,8 +74,7 @@ const editUser = async (req, res) => {
 };
 
 const addFavorite = async (req, res) => {
-  const { recipeId } = req.params;
-  const { userId } = req.body;
+  const { userId, recipeId } = req.body;
   try {
     await favorites(userId, recipeId);
     res.status(200).json({message: 'Recipe added to favorites successfully'})
