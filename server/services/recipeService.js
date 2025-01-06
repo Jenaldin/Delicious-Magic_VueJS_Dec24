@@ -83,6 +83,10 @@ const del = async (recipeId) => {
          throw new Error('Recipe not found.'); 
       }
       await User.updateMany({favorites: recipeId}, { $pull: { favorites: recipeId } });
+      const owner = await User.findOne({ recipesOwned: recipeId }); 
+      if (owner) { 
+         await User.updateOne({ _id: owner._id }, { $pull: { recipesOwned: recipeId } });
+      }
       return 'Recipe and references to it have been deleted.';
    } catch (error) {
       throw new Error('Error deleting recipe: ' + error.message);
