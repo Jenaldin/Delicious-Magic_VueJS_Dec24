@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
-import Login from '@/components/Login.vue';
-import Register from '@/components/Register.vue';
+import Login from '../components/Login.vue';
+import Register from '../components/Register.vue';
 
 const tab = ref('login');
 

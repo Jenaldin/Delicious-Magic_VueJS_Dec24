@@ -1,9 +1,9 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
-import { useRecipeStore } from '@/stores/recipe';
+import { useRecipeStore } from '../stores/recipe';
 import { useRouter } from 'vue-router';
-import { getAllRecipes } from '@/api/recipes';
-import { formatDate } from '@/utils/formatDates';
+import { getAllRecipes } from '../api/recipes';
+import { formatDate } from '../utils/formatDates';
 
 const recipeStore = useRecipeStore();
 const router = useRouter();
