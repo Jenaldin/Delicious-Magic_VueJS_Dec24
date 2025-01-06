@@ -2,8 +2,8 @@ import { getAll, get, add, edit, del, rate } from "../services/recipeService.js"
 
 const getAllRecipes = async (req, res) => {
    try {
-      let pageNumber = Number(req.query.pageNumber) || 0;
-      const pageSize = Number(req.query.pageSize) || 10;
+      let pageNumber = Number(req.query.pageNumber);
+      const pageSize = Number(req.query.pageSize);
       const items = await getAll(pageNumber, pageSize);
       res.status(200).json({recipes: items.recipes, total: items.total});
    } catch (error) {
