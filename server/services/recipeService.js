@@ -6,7 +6,7 @@ const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 const getAll = async (pageNumber, pageSize) => {
    try {
-      const recipes = await Recipe.find().skip(pageNumber).limit(pageSize);
+      const recipes = await Recipe.find().skip((pageNumber - 1) * pageSize).limit(pageSize);
       const total = await Recipe.countDocuments();
       return { recipes, total };
    } catch (error) {

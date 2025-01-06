@@ -6,7 +6,7 @@ const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 const getAll = async(pageNumber, pageSize) => {
    try {
-      const comments = await Comment.find().skip(pageNumber).limit(pageSize);
+      const comments = await Comment.find().skip((pageNumber - 1) * pageSize).limit(pageSize);
       const total = await Comment.countDocuments();
       return { comments, total }
    } catch (error) {
