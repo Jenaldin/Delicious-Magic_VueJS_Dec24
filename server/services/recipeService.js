@@ -109,8 +109,10 @@ const rate = async (recipeId, userId, rating) => {
       if(ratedRecipe.owner.equals(userId)){
          throw new Error('Owners cannot rate their own recipes.');
       }
-      ratedRecipe.peopleRated.push(userId);
-      ratedRecipe.averageRating = ((ratedRecipe.averageRating * (ratedRecipe.peopleRated.length - 1)) + rating) / ratedRecipe.peopleRated.length;
+      ratedRecipe.averageRating = ratedRecipe.averageRating || 0; 
+      const peopleRatedCount = ratedRecipe.peopleRated.length; 
+      ratedRecipe.peopleRated.push(userId); 
+      ratedRecipe.averageRating = ((ratedRecipe.averageRating * peopleRatedCount) + rating) / (peopleRatedCount + 1);
       await ratedRecipe.save();
       return 'Recipe rating saved successfully.';
    } catch (error) {
