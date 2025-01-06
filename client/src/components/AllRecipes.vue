@@ -68,7 +68,7 @@ const drinkRecipes = computed(() => recipeStore.drinkRecipes);
                 <v-card-subtitle>Time to make: {{ recipe.prepTime }} mins</v-card-subtitle>
                 <v-card-subtitle>Added on {{ formatDate(recipe.createdAt) }} by {{ recipe.owner.username }}</v-card-subtitle>
                 <v-card-actions>
-                  <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'ViewRecipe', params: { id: recipe._id } })">
+                  <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })">
                     View Recipe Scroll
                   </v-btn>
                 </v-card-actions>
@@ -100,8 +100,8 @@ const drinkRecipes = computed(() => recipeStore.drinkRecipes);
                 <v-card-subtitle>Time to make: {{ recipe.prepTime }} mins</v-card-subtitle>
                 <v-card-subtitle>Added on {{ formatDate(recipe.createdAt) }} by {{ recipe.owner.username }}</v-card-subtitle>
                 <v-card-actions>
-                  <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'ViewRecipe', params: { id: recipe._id } })">
-                    View Recipe
+                  <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })">
+                    View Recipe Scroll
                   </v-btn>
                 </v-card-actions>
               </v-card>
