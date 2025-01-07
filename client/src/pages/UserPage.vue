@@ -4,9 +4,11 @@ import { useRoute, useRouter } from 'vue-router';
 import OwnedRecipes from '../components/OwnedRecipes.vue';
 import FavoriteRecipes from '../components/FavoriteRecipes.vue';
 import Profile from '../components/Profile.vue';
+import { useAuthStore } from '../stores/authStore';
 
 const route = useRoute();
 const router = useRouter();
+const user = useAuthStore();
 
 const tab = ref('profile');
 
@@ -31,8 +33,7 @@ const tabs = computed(() => [
                <v-card-text>
                   <v-tabs-window v-model="tab">
                      <v-tabs-window-item value="profile">
-                        <!-- <Profile :userId="route.params.userId || auth.userId" /> -->
-                        <Profile />
+                        <Profile :userId="route.params.userId || user.userId" />
                      </v-tabs-window-item>
                      <v-tabs-window-item value="owned">
                         <!-- <OwnedRecipes :userId="route.params.userId || auth.userId" /> -->
