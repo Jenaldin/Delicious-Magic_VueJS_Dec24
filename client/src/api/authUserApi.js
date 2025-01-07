@@ -29,6 +29,6 @@ export const getUser = async (userId) => {
 };
 
 export const editUser = async (userId, userData) => {
-  const response = await axiosApi.put(`/user/edit/${userId}`, { userData });
+  const response = await axiosApi.put(`/user/edit/${userId}`, userData);
   return response.data;
 };
