@@ -14,7 +14,7 @@ const routes = [
   { path: '/view-recipe/:id', name: 'view-recipe', component: Details },
   { path: '/edit-recipe/:id', name: 'edit-recipe', component: Details, meta: { requiresAuth: true } },
   { path: '/user', name: 'user', component: User, meta: { requiresAuth: true } },
-  { path: '/user/:id', name: 'user-id', component: User },
+  { path: '/user/:userId', name: 'user-id', component: User },
   { path: '/:pathMatch(.*)*', name: '404', component: () => import('../pages/PageNotFoundPage.vue') },
 ];
 

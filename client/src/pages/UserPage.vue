@@ -1,14 +1,14 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import OwnedRecipes from '../components/OwnedRecipes.vue';
 import FavoriteRecipes from '../components/FavoriteRecipes.vue';
 import Profile from '../components/Profile.vue';
 import { useAuthStore } from '../stores/authStore';
 
 const route = useRoute();
-const router = useRouter();
-const user = useAuthStore();
+const authStore = useAuthStore(); 
+const userId = computed(() => route.params.userId || authStore.userId);
 
 const tab = ref('profile');
 
@@ -33,15 +33,13 @@ const tabs = computed(() => [
                <v-card-text>
                   <v-tabs-window v-model="tab">
                      <v-tabs-window-item value="profile">
-                        <Profile :userId="route.params.userId || user.userId" />
+                        <Profile :userId="userId" />
                      </v-tabs-window-item>
                      <v-tabs-window-item value="owned">
-                        <!-- <OwnedRecipes :userId="route.params.userId || auth.userId" /> -->
-                        <OwnedRecipes />
+                        <OwnedRecipes :userId="userId" />
                      </v-tabs-window-item>
                      <v-tabs-window-item value="favorites">
-                        <!-- <FavoriteRecipes :userId="route.params.userId || auth.userId" /> -->
-                        <FavoriteRecipes />
+                        <FavoriteRecipes :userId="userId" />
                      </v-tabs-window-item>
                   </v-tabs-window>
                </v-card-text>
