@@ -22,3 +22,13 @@ export const addFavorite = async (userId, recipeId) => {
   const response = await axiosApi.put(`/user/addFav`, { userId, recipeId });
   return response.data;
 };
+
+export const getUser = async (userId) => {
+  const response = await axiosApi.get(`/user/${userId}`);
+  return response.data;
+};
+
+export const editUser = async (userId, userData) => {
+  const response = await axiosApi.put(`/user/edit/${userId}`, { userData });
+  return response.data;
+};
