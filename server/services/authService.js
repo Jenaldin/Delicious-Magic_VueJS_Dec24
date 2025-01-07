@@ -70,7 +70,7 @@ const edit = async (userId, payloadData) => {
     if (!isValidObjectId(userId)) {
        throw new Error('Not a valid user ID.');
     }
-    const editedUser = await User.findByIdAndUpdate(userId, payloadData, { new: true, runValidators: true });
+    const editedUser = await User.findByIdAndUpdate(userId, payloadData, { runValidators: true });
     if (!editedUser) { 
        throw new Error('User not found.'); 
     }
