@@ -44,7 +44,7 @@ const getOwner = async (userId) => {
     if (!isValidObjectId(userId)) {
        throw new Error('Not a valid user ID.');
     }
-    return await User.findOne(userId);
+    return await User.findOne({ _id: userId });
  } catch (error) {
     throw new Error('Error fetching profile ownership: ' + error.message);
  }
@@ -53,7 +53,7 @@ const getOwner = async (userId) => {
 const get = async (userId) => {
   try {
     if (!isValidObjectId(userId)) {
-       throw new Error('Not a valid recipe ID.');
+       throw new Error('Not a valid user ID.');
     }
     const user = await User.findById(userId).populate('recipesOwned', 'title _id').populate('favorites', 'title _id').lean();
     if (!user) { 

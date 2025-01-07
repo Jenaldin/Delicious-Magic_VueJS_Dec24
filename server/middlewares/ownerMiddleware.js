@@ -20,9 +20,9 @@ const isRecipeOwner = async (req, res, next) => {
 };
 
 const isProfileOwner = async (req, res, next) => {
-   const userId = req.params.userId;
+   const userId = req.params.userId;   
    try {
-      const user = await getOwner({userId});
+      const user = await getOwner(userId);
       if (!user) {
          return res.status(404).json({ error: 'User not found.' });
       }
