@@ -20,7 +20,7 @@ const snackbar = computed(() => authStore.snackbar);
     </template>
     <template v-else>
       <v-btn color="amber-darken-1" text to="/add-recipe">Add Recipe</v-btn>
-      <v-btn color="amber-darken-1" text to="/*">My Cookbook & Profile</v-btn>
+      <v-btn color="amber-darken-1" text to="/user">My Cookbook & Profile</v-btn>
       <v-btn color="amber-darken-1" text @click="authStore.logout">Logout</v-btn>
     </template>
   </v-toolbar>

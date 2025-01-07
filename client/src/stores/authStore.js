@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { logout as apiLogout } from '../api/authUserApi';
+import { useRouter } from 'vue-router';
 
 export const useAuthStore = defineStore('auth', () => {
+  const router = useRouter();
   const isAuthenticated = ref(false);
   const username = ref('');
   const userId = ref('');
@@ -40,8 +42,11 @@ export const useAuthStore = defineStore('auth', () => {
       snackbar.value = {
         show: true,
         message: 'Logout successful!',
-        color: 'green-darken-4'
+        color: 'green-darken-4',
       };
+      setTimeout(() => {
+        router.push('/');
+      }, 1000);
     } catch (error) {
       snackbar.value = {
         show: true,

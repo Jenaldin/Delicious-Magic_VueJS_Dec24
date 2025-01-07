@@ -3,6 +3,7 @@ import { useAuthStore } from '../stores/authStore';
 import Entry from '../pages/EntryPage.vue';
 import Catalog from '../pages/CatalogPage.vue';
 import Details from '../pages/DetailsPage.vue';
+import User from '../pages/UserPage.vue';
 
 const routes = [
   { path: '/', name: 'home', component: () => import('../pages/HomePage.vue') },
@@ -12,6 +13,8 @@ const routes = [
   { path: '/add-recipe', name: 'add-recipe', component: Details, meta: { requiresAuth: true } },
   { path: '/view-recipe/:id', name: 'view-recipe', component: Details },
   { path: '/edit-recipe/:id', name: 'edit-recipe', component: Details, meta: { requiresAuth: true } },
+  { path: '/user', name: 'user', component: User, meta: { requiresAuth: true } },
+  { path: '/user/:id', name: 'user-id', component: User },
   { path: '/:pathMatch(.*)*', name: '404', component: () => import('../pages/PageNotFoundPage.vue') },
 ];
 
