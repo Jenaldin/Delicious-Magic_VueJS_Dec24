@@ -55,7 +55,7 @@ const get = async (userId) => {
     if (!isValidObjectId(userId)) {
        throw new Error('Not a valid user ID.');
     }
-    const user = await User.findById(userId).populate('recipesOwned', 'title _id').populate('favorites', 'title _id').lean();
+    const user = await User.findById(userId).populate('recipesOwned', 'title _id type image createdAt').populate('favorites', 'title _id type image createdAt').lean();
     if (!user) { 
        throw new Error('User not found.'); 
     }
