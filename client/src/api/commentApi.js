@@ -1,7 +1,7 @@
 import axiosApi from '../axios.js'
 
 export const getAllComments = async (recipeId) => {
-   const response = await axiosApi.get('/comment', recipeId)
+   const response = await axiosApi.get(`/comment/${recipeId}`)
    return response.data
 };
 
