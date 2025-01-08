@@ -15,7 +15,7 @@ const recipeId = route.params.id;
 const recipe = ref(null);
 const isOwner = computed(() => auth.userId === recipe.value?.owner._id);
 const isLoggedIn = computed(() => auth.isAuthenticated);
-const drawer = ref(false); // State to manage the drawer
+const drawer = ref(false);
 
 const snackbar = ref({
   show: false,
