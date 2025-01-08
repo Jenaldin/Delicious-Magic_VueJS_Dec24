@@ -62,7 +62,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
             <v-col v-for="recipe in foodRecipes" :key="recipe._id" cols="12" sm="6" md="4">
               <v-card>
                 <v-card-item>
-                  <v-img :src="recipe.image" alt="Recipe Image" width="65" height="65"></v-img>
+                  <v-img :src="recipe.image ? recipe.image : '/img-placeholder.png'" alt="Recipe Image" width="65" height="65"></v-img>
                 </v-card-item>
                 <v-card-title>{{ recipe.title }}</v-card-title>
                 <v-card-subtitle>Time to make: {{ recipe.prepTime }} mins</v-card-subtitle>
@@ -94,7 +94,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
             <v-col v-for="recipe in drinkRecipes" :key="recipe._id" cols="12" sm="6" md="4">
               <v-card>
                 <v-card-item>
-                  <v-img :src="recipe.image" alt="Recipe Image" width="65" height="65"></v-img>
+                  <v-img :src="recipe.image ? recipe.image : '/img-placeholder.png'" alt="Recipe Image" width="65" height="65"></v-img>
                 </v-card-item>
                 <v-card-title>{{ recipe.title }}</v-card-title>
                 <v-card-subtitle>Time to make: {{ recipe.prepTime }} mins</v-card-subtitle>
