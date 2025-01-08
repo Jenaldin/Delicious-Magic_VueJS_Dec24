@@ -69,7 +69,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
                 <v-card-subtitle>Added on {{ formatDate(recipe.createdAt) }} by {{ recipe.owner.username }}</v-card-subtitle>
                 <v-card-actions>
                   <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })">
-                    View Recipe Scroll
+                    View
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -101,7 +101,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
                 <v-card-subtitle>Added on {{ formatDate(recipe.createdAt) }} by {{ recipe.owner.username }}</v-card-subtitle>
                 <v-card-actions>
                   <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })">
-                    View Recipe Scroll
+                    View
                   </v-btn>
                 </v-card-actions>
               </v-card>
