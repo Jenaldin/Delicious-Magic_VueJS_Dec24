@@ -186,8 +186,8 @@ li{
 }
 
 .rec-img {
-  max-width: 350px;
-  max-height: 350px; 
+  max-width: 450px;
+  max-height: 450px; 
   width: auto; 
   height: auto;
 }
