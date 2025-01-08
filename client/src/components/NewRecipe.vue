@@ -154,7 +154,7 @@ const submitForm = async () => {
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
               <v-btn v-if="index >= 3" icon @click="removeIngredient(index)" color="red-darken-4" size="x-small">
-                <v-icon>mdi-close</v-icon>
+                <v-icon>mdi-trash-can-outline</v-icon>
               </v-btn>
             </v-list-item>
           </v-list>
@@ -172,7 +172,7 @@ const submitForm = async () => {
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
               <v-btn v-if="index >= 3" icon @click="removeStep(index)" color="red-darken-4" size="x-small">
-                <v-icon>mdi-close</v-icon>
+                <v-icon>mdi-trash-can-outline</v-icon>
               </v-btn>
             </v-list-item>
           </v-list>
@@ -189,4 +189,7 @@ const submitForm = async () => {
 </template>
 
 <style scoped>
+.v-btn {
+  margin: 0.2rem
+}
 </style>
