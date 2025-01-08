@@ -55,7 +55,7 @@ const edit = async (commentId, payloadData) => {
       if (!isValidObjectId(commentId)) {
          throw new Error('Not a valid comment ID.');
       }
-      const editedComment = await Comment.findByIdAndUpdate(commentId, payloadData, { new: true, runValidators: true });
+      const editedComment = await Comment.findByIdAndUpdate(commentId, payloadData, { runValidators: true });
       if (!editedComment) { 
          throw new Error('Comment not found.'); 
       }
