@@ -39,7 +39,7 @@ const isProfileOwner = async (req, res, next) => {
 const isCommentOwner = async (req, res, next) => {
    const commentId = req.params.commentId;
    try {
-      const comment = await getOwnerComm({commentId});
+      const comment = await getOwnerComm(commentId);
       if (!comment) {
          return res.status(404).json({ error: 'Comment not found.' });
       }

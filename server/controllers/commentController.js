@@ -2,10 +2,9 @@ import { getAll, get, add, edit, del } from '../services/commentService.js';
 
 const getAllComments = async (req, res) => {
    try {
-      let pageNumber = Number(req.query.pageNumber) || 0;
-      const pageSize = Number(req.query.pageSize) || 10;
-      const items = await getAll(pageNumber, pageSize);
-      res.status(200).json({comments: items.comments, total: items.total});
+      const recipeId = req.body;
+      const items = await getAll(recipeId);
+      res.status(200).json(items);
    } catch (error) {
       if (error.name === 'ValidationError') {
          res.status(400).json({error: error.message});

@@ -4,11 +4,11 @@ import Recipe from "../models/recipeModel.js";
 
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
-const getAll = async(pageNumber, pageSize) => {
+const getAll = async(recipeId) => {
    try {
-      const comments = await Comment.find().skip((pageNumber - 1) * pageSize).limit(pageSize);
-      const total = await Comment.countDocuments();
-      return { comments, total }
+      const comments = await Comment.find({recipe: _id}).populate('owner', 'username').lean();
+      comments.sort((a, b) => b.createdAt - a.createdAt);
+      return comments
    } catch (error) {
       throw new Error('Error fetching comments: ' + error.message)
    }
@@ -19,7 +19,7 @@ const get = async (commentId) => {
       if (!isValidObjectId(commentId)) {
          throw new Error('Not a valid comment ID.');
       }
-      const comment = await Comment.findById(commentId).populate('owner', 'username').populate('recipe', 'title _id').lean();
+      const comment = await Comment.findById(commentId).populate('owner', 'username').lean();
       if(!comment) {
          throw new Error('Comment not found.');
       }
@@ -34,7 +34,7 @@ const getOwnerComm = async (commentId) => {
       if (!isValidObjectId(commentId)) {
          throw new Error('Not a valid comment ID.');
       }
-      return await Comment.findOne(commentId);
+      return await Comment.findOne({commentId});
    } catch (error) {
       throw new Error('Error fetching comment ownership: ' + error.message)
    }
