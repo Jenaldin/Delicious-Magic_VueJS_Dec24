@@ -1,20 +1,20 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { getUser } from '../api/authUserApi';
-import { deleteRecipe } from '../api/recipeApi';
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '../stores/authStore';
+import { ref, computed, onMounted } from 'vue'
+import { getUser } from '../api/authUserApi'
+import { deleteRecipe } from '../api/recipeApi'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/authStore'
 
 const props = defineProps({
   userId: {
     type: String,
     required: true,
   },
-});
+})
 
-const router = useRouter();
-const auth = useAuthStore();
-const isOwner = computed(() => auth.userId === props.userId);
+const router = useRouter()
+const auth = useAuthStore()
+const isOwner = computed(() => auth.userId === props.userId)
 
 const recipesOwned = ref([])
 const snackbar = ref({
@@ -26,7 +26,9 @@ const snackbar = ref({
 const fetchRecipesFromUser = async () => {
   try {
     const user = await getUser(props.userId)
-    recipesOwned.value = user.recipesOwned
+    recipesOwned.value = user.recipesOwned.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+    )
   } catch (error) {
     snackbar.value = {
       show: true,
@@ -38,7 +40,7 @@ const fetchRecipesFromUser = async () => {
 
 onMounted(() => {
   fetchRecipesFromUser()
-});
+})
 
 const del = async (recipeId) => {
   try {
@@ -59,7 +61,7 @@ const del = async (recipeId) => {
   <div>
     <v-card v-for="recipe in recipesOwned" :key="recipe._id">
       <v-row
-        ><v-col>
+        ><v-col style="flex-grow: 1">
           <v-img
             :src="recipe.image ? recipe.image : '/img-placeholder.png'"
             alt="Recipe Image"
@@ -67,24 +69,41 @@ const del = async (recipeId) => {
             max-width="65"
           ></v-img
         ></v-col>
-        <v-col
-          ><v-card-title>{{ recipe.title }}</v-card-title></v-col
+        <v-col style="flex-grow: 7"
+          ><v-card-title
+            ><h5>{{ recipe.title }}</h5></v-card-title
+          ></v-col
         >
-        <v-col
+        <v-col style="flex-grow: 1"
           ><v-card-subtitle>Type: {{ recipe.type }}</v-card-subtitle></v-col
         >
         <div v-if="isOwner">
-        <v-col>
-          <v-card-actions>
-            <v-btn
-              color="green-darken-4" 
-              variant="tonal"
-              @click="() => router.push({ name: 'edit-recipe', params: { id: recipe._id } })"
-              >Edit</v-btn
-            >
-            <v-btn color="red-darken-4" variant="tonal" @click="() => del(recipe._id)">Delete</v-btn>
-          </v-card-actions></v-col
-        ></div>
+          <v-col style="flex-grow: 3">
+            <v-card-actions>
+              <v-btn
+                size="small"
+                color="amber-darken-1"
+                variant="tonal"
+                @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
+                >View</v-btn
+              >
+              <v-btn
+                size="small"
+                color="green-darken-4"
+                variant="tonal"
+                @click="() => router.push({ name: 'edit-recipe', params: { id: recipe._id } })"
+                >Edit</v-btn
+              >
+              <v-btn
+                size="small"
+                color="red-darken-4"
+                variant="tonal"
+                @click="() => del(recipe._id)"
+                >Delete</v-btn
+              >
+            </v-card-actions></v-col
+          >
+        </div>
       </v-row>
     </v-card>
     <v-snackbar v-model="snackbar.show" :color="snackbar.color">
@@ -95,9 +114,9 @@ const del = async (recipeId) => {
 
 <style scoped>
 .v-card {
-   margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .v-btn {
-  margin-right: 0.5rem;
+  margin-right: 0.05rem;
 }
 </style>
