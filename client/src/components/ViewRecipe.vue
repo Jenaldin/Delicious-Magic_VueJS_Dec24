@@ -81,7 +81,7 @@ const del = async () => {
 
 <template>
   <div v-if="recipe">
-    <v-card>
+    <v-card class="recipe-card">
       <v-card-title>
         <h2>{{ recipe.title }}</h2>
       </v-card-title>
@@ -123,9 +123,9 @@ const del = async () => {
           </div>
         </div>
       </v-card-actions>
-      <div v-if="recipe.image">
-        <img :src="recipe.image" alt="Recipe Image" class="rec-img"/>
-      </div>
+      
+        <img :src="recipe.image ? recipe.image : '/img-placeholder.png'" alt="Recipe Image" class="rec-img"/>
+      
       <v-card-text>
         <v-row>
           <v-col style="flex-grow: 3">
@@ -163,6 +163,14 @@ ol {
   margin: 1.5rem;
 }
 
+li{
+  margin-bottom: 0.3rem;
+}
+
+.recipe-card{
+  width: 900px;
+}
+
 .v-btn {
   margin-right: 0.5rem;
 }
@@ -178,8 +186,8 @@ ol {
 }
 
 .rec-img {
-  max-width: 450px;
-  max-height: 450px; 
+  max-width: 350px;
+  max-height: 350px; 
   width: auto; 
   height: auto;
 }
