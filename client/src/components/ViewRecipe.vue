@@ -5,6 +5,7 @@ import { useAuthStore } from '../stores/authStore';
 import { getRecipe, rateRecipe, deleteRecipe } from '../api/recipeApi';
 import { addFavorite } from '../api/authUserApi';
 import { formatDate } from '../utils/formatDates';
+import CommentPage from '../pages/CommentPage.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -14,11 +15,12 @@ const recipeId = route.params.id;
 const recipe = ref(null);
 const isOwner = computed(() => auth.userId === recipe.value?.owner._id);
 const isLoggedIn = computed(() => auth.isAuthenticated);
+const drawer = ref(false); // State to manage the drawer
 
 const snackbar = ref({
   show: false,
   message: '',
-  color: 'green-darken-4'
+  color: 'green-darken-4',
 });
 
 const fetchRecipe = async (id) => {
@@ -123,9 +125,7 @@ const del = async () => {
           </div>
         </div>
       </v-card-actions>
-      
-        <img :src="recipe.image ? recipe.image : '/img-placeholder.png'" alt="Recipe Image" class="rec-img"/>
-      
+      <img :src="recipe.image ? recipe.image : '/img-placeholder.png'" alt="Recipe Image" class="rec-img"/>
       <v-card-text>
         <v-row>
           <v-col style="flex-grow: 3">
@@ -143,10 +143,15 @@ const del = async () => {
           </v-col>
         </v-row>
       </v-card-text>
+      <div v-if="isLoggedIn" class="comms">
+        <v-btn color="amber-darken-1" variant="tonal" @click="drawer = !drawer">
+          {{ drawer ? 'Hide Comments' : 'Show Comments' }}
+        </v-btn>
+      </div>
     </v-card>
-    <div v-if="isLoggedIn">
-      <!-- comments component -->
-    </div>
+    <v-navigation-drawer v-model="drawer" location="right" permanent width="450">
+      <CommentPage />
+    </v-navigation-drawer>
     <v-snackbar v-model="snackbar.show" :color="snackbar.color">
       {{ snackbar.message }}
     </v-snackbar>
@@ -163,11 +168,11 @@ ol {
   margin: 1.5rem;
 }
 
-li{
+li {
   margin-bottom: 0.3rem;
 }
 
-.recipe-card{
+.recipe-card {
   width: 900px;
 }
 
@@ -186,9 +191,13 @@ li{
 }
 
 .rec-img {
-  max-width: 450px;
-  max-height: 450px; 
-  width: auto; 
+  max-width: 350px;
+  max-height: 350px;
+  width: auto;
   height: auto;
+}
+
+.comms {
+  margin: 0.5rem;
 }
 </style>
