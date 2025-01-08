@@ -77,7 +77,7 @@ const del = async (recipeId) => {
         <v-col style="flex-grow: 1"
           ><v-card-subtitle>Type: {{ recipe.type }}</v-card-subtitle></v-col
         >
-        <div v-if="isOwner">
+        
           <v-col style="flex-grow: 3">
             <v-card-actions>
               <v-btn
@@ -87,6 +87,7 @@ const del = async (recipeId) => {
                 @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
                 >View</v-btn
               >
+              <div v-if="isOwner">
               <v-btn
                 size="small"
                 color="green-darken-4"
@@ -100,10 +101,10 @@ const del = async (recipeId) => {
                 variant="tonal"
                 @click="() => del(recipe._id)"
                 >Delete</v-btn
-              >
+              ></div>
             </v-card-actions></v-col
           >
-        </div>
+        
       </v-row>
     </v-card>
     <v-snackbar v-model="snackbar.show" :color="snackbar.color">
