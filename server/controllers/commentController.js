@@ -1,8 +1,8 @@
 import { getAll, get, add, edit, del } from '../services/commentService.js';
 
 const getAllComments = async (req, res) => {
-   try {
-      const recipeId = req.body;
+   const recipeId = req.params.recipeId
+   try {  
       const items = await getAll(recipeId);
       res.status(200).json(items);
    } catch (error) {

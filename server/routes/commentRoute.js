@@ -5,7 +5,7 @@ import { isCommentOwner } from '../middlewares/ownerMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', getAllComments);
+router.get('/:recipeId', getAllComments);
 router.get('/:commentId', getComment);
 router.post('/add', isAuth, addComment);
 router.patch('/edit/:commentId', isCommentOwner, editComment);

@@ -6,8 +6,8 @@ const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 const getAll = async(recipeId) => {
    try {
-      const comments = await Comment.find({recipe: _id}).populate('owner', 'username').lean();
-      comments.sort((a, b) => b.createdAt - a.createdAt);
+      const comments = await Comment.find({recipe: recipeId}).populate('owner', 'username').lean();
+      comments.sort((a, b) => b.createdAt - a.createdAt);    
       return comments
    } catch (error) {
       throw new Error('Error fetching comments: ' + error.message)
