@@ -6,7 +6,7 @@ const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 const getAll = async(recipeId) => {
    try {
-      const comments = await Comment.find({recipe: recipeId}).populate('owner', 'username').lean();
+      const comments = await Comment.find({recipe: recipeId}).populate('owner', 'username avatar').lean();
       comments.sort((a, b) => b.createdAt - a.createdAt);    
       return comments
    } catch (error) {
@@ -19,7 +19,7 @@ const get = async (commentId) => {
       if (!isValidObjectId(commentId)) {
          throw new Error('Not a valid comment ID.');
       }
-      const comment = await Comment.findById(commentId).populate('owner', 'username').lean();
+      const comment = await Comment.findById(commentId).populate('owner', 'username avatar').lean();
       if(!comment) {
          throw new Error('Comment not found.');
       }
