@@ -22,7 +22,7 @@ const tabs = computed(() => [
 <template>
    <v-container>
       <v-row justify="center">
-         <v-col cols="10" md="6">
+         <v-col cols="12" sm="4" md="6" >
             <v-card>
                <v-tabs v-model="tab" background-color="#80CBC4">
                   <v-tab v-for="tabOption in tabs" :key="tabOption.value" :value="tabOption.value">

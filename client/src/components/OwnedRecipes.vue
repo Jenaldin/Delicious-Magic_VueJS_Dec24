@@ -71,7 +71,7 @@ const del = async (recipeId) => {
         ></v-col>
         <v-col style="flex-grow: 7"
           ><v-card-title
-            ><h5>{{ recipe.title }}</h5></v-card-title
+            ><h5 class="title-ellipsis">{{ recipe.title }}</h5></v-card-title
           ></v-col
         >
         <v-col style="flex-grow: 1"
@@ -115,6 +115,11 @@ const del = async (recipeId) => {
 <style scoped>
 .v-card {
   margin-bottom: 0.5rem;
+}
+
+.title-ellipsis { 
+   width: 30ch;
+   white-space: normal; 
 }
 .v-btn {
   margin-right: 0.05rem;
