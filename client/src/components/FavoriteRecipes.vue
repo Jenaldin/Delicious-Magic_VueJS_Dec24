@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getUser } from '../api/authUserApi'
-import { deleteRecipe } from '../api/recipeApi'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
@@ -34,20 +33,6 @@ const fetchRecipesFromUser = async () => {
 onMounted(() => {
   fetchRecipesFromUser()
 })
-
-const del = async (recipeId) => {
-  try {
-    await deleteRecipe(recipeId)
-    snackbar.value.message = 'Recipe deleted successfully!'
-    snackbar.value.color = 'green-darken-4'
-    snackbar.value.show = true
-    await fetchRecipesFromUser()
-  } catch (error) {
-    snackbar.value.message = error.response?.data?.error || error.message
-    snackbar.value.color = 'red-darken-4'
-    snackbar.value.show = true
-  }
-}
 </script>
 
 <template>
