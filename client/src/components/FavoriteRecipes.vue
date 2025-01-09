@@ -49,7 +49,7 @@ onMounted(() => {
        <v-row class="align-center">
          <v-col cols="auto" class="d-flex align-center">
            <v-img
-             :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+             :src="recipe.image ? recipe.image : '/recipe-img.png'"
              alt="Recipe Image"
              height="65"
              width="65"

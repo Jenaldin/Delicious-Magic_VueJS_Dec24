@@ -73,7 +73,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
               <v-card>
                 <v-card-item>
                   <v-img
-                    :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+                    :src="recipe.image ? recipe.image : '/recipe-img.png'"
                     alt="Recipe Image"
                     width="65"
                     height="65"
@@ -120,7 +120,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
               <v-card>
                 <v-card-item>
                   <v-img
-                    :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+                    :src="recipe.image ? recipe.image : '/recipe-img.png'"
                     alt="Recipe Image"
                     width="65"
                     height="65"

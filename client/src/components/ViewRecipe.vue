@@ -151,7 +151,7 @@ const del = async () => {
       </div>
     </v-card-actions>
     <img
-      :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+      :src="recipe.image ? recipe.image : '/recipe-img.png'"
       alt="Recipe Image"
       class="rec-img"
     />

@@ -70,7 +70,7 @@ const del = async (recipeId) => {
       <v-row
         ><v-col style="flex-grow: 1">
           <v-img
-            :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+            :src="recipe.image ? recipe.image : '/recipe-img.png'"
             alt="Recipe Image"
             max-height="65"
             max-width="65"
