@@ -18,6 +18,7 @@ const register = async (userData) => {
     const token = await generateToken(createdUser);
     return { token, username: createdUser.username, id: createdUser._id };
   } catch (error) {
+    console.error('An error occurred:', error);
     throw new Error("Error registering a user: " + error.message);
   }
 };
@@ -35,6 +36,7 @@ const login = async ({ username, password }) => {
     const token = await generateToken(user);
     return { token, username: user.username, id: user._id };
   } catch (error) {
+    console.error('An error occurred:', error);
     throw new Error("Error logging in a user: " + error.message);
   }
 };
@@ -46,6 +48,7 @@ const getOwner = async (userId) => {
     }
     return await User.findOne({ _id: userId });
  } catch (error) {
+  console.error('An error occurred:', error);
     throw new Error('Error fetching profile ownership: ' + error.message);
  }
 };
@@ -61,6 +64,7 @@ const get = async (userId) => {
     }
     return user;
  } catch (error) {
+  console.error('An error occurred:', error);
     throw new Error('Error fetching profile: ' + error.message);
  }
 };
@@ -76,6 +80,7 @@ const edit = async (userId, payloadData) => {
     }
     return editedUser;
  } catch (error) {
+  console.error('An error occurred:', error);
     throw new Error('Error editing profile: ' + error.message);
  }
 };
@@ -95,6 +100,7 @@ const favorites = async (userId, recipeId) => {
     await User.findByIdAndUpdate(userId, { $push: { favorites: recipeId }});
     return 'Recipe added to favorites successfully.'
   } catch (error) {
+    console.error('An error occurred:', error);
     console.log(error.message);
     throw new Error('Error adding recipe to favorites: ' + error.message)
   }

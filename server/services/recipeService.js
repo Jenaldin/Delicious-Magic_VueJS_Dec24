@@ -16,6 +16,7 @@ const getAll = async (type, pageNumber, pageSize) => {
       const total = await Recipe.countDocuments({ type });
       return { recipes, total };
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error fetching recipes: ' + error.message);
    }
 };
@@ -27,6 +28,7 @@ const getOwnership = async (recipeId) => {
       }    
       return await Recipe.findOne({ _id: recipeId });
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error fetching recipe ownership: ' + error.message);
    }
 };
@@ -42,6 +44,7 @@ const get = async (recipeId) => {
       }
       return recipe;
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error fetching recipe: ' + error.message);
    }
 };
@@ -55,6 +58,7 @@ const add = async (payloadData, ownerId) => {
       await User.findByIdAndUpdate(ownerId, { $push: { recipesOwned: newRecipe._id } });
       return newRecipe;
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error creating recipe: ' + error.message);
    }
 };
@@ -70,6 +74,7 @@ const edit = async (recipeId, payloadData) => {
       }
       return editedRecipe;
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error editing recipe: ' + error.message);
    }
 };
@@ -91,6 +96,7 @@ const del = async (recipeId) => {
       await Comment.deleteMany({ recipe: recipeId });
       return 'Recipe and references to it have been deleted.';
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error deleting recipe: ' + error.message);
    }
 };
@@ -118,6 +124,7 @@ const rate = async (recipeId, userId, rating) => {
       await ratedRecipe.save();
       return 'Recipe rating saved successfully.';
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error rating recipe: ' + error.message);
    }
 };

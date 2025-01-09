@@ -10,6 +10,7 @@ const getAll = async(recipeId) => {
       comments.sort((a, b) => b.createdAt - a.createdAt);    
       return comments
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error fetching comments: ' + error.message)
    }
 };
@@ -25,6 +26,7 @@ const get = async (commentId) => {
       }
       return comment;
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error fetching comment: ' + error.message);
    }
 };
@@ -36,6 +38,7 @@ const getOwnerComm = async (commentId) => {
       }
       return await Comment.findOne({_id: commentId});
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error fetching comment ownership: ' + error.message)
    }
 };
@@ -46,6 +49,7 @@ const add = async (payloadData, ownerId) => {
       await Recipe.findByIdAndUpdate(payloadData.recipe, { $push: { comments: newComment._id } })
       return newComment;
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error("Error adding comment: " + error.message);
    }
 };
@@ -61,6 +65,7 @@ const edit = async (commentId, payloadData) => {
       }
       return editedComment;
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error editing comment: ' + error.message);
    }
 };
@@ -77,6 +82,7 @@ const del = async (commentId) => {
       await Recipe.updateMany({comments: commentId}, { $pull: { comments: commentId } })
       return 'Comment deleted successfully.';
    } catch (error) {
+      console.error('An error occurred:', error);
       throw new Error('Error deleting comment: ' + error.message);
    }
 };

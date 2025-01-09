@@ -6,6 +6,7 @@ const getAllComments = async (req, res) => {
       const items = await getAll(recipeId);
       res.status(200).json(items);
    } catch (error) {
+      console.error('An error occurred:', error);
       if (error.name === 'ValidationError') {
          res.status(400).json({error: error.message});
       } else if (error.name === 'CastError') {
@@ -21,6 +22,7 @@ const getComment = async (req, res) => {
       const item = await get(req.params.commentId);
       res.status(200).json(item)
    } catch (error) {
+      console.error('An error occurred:', error);
       if (error.message.includes('Not a valid comment ID')) {
          res.status(400).json({ error: error.message });
       } else if (error.message.includes('Comment not found')) {
@@ -38,6 +40,7 @@ const addComment = async (req, res) => {
       await add(payloadData, ownerId);
       res.status(201).json({message: 'Comment added successfully'});
    } catch (error) {
+      console.error('An error occurred:', error);
       if (error.message.includes('Error creating comment')) {
          res.status(400).json({ error: error.message });
       } else {
@@ -53,6 +56,7 @@ const editComment = async (req, res) => {
       await edit(commentId, payloadData);
       res.status(200).json({message: 'Comment edited successfully'});
    } catch (error) {
+      console.error('An error occurred:', error);
       if (error.message.includes('Not a valid comment ID')) {
          res.status(400).json({ error: error.message });
       } else if (error.message.includes('Comment not found')) {
@@ -69,6 +73,7 @@ const deleteComment = async (req, res) => {
       await del(commentId);
       res.status(200).json( {message: 'Comment and references to it have been deleted.'} );
    } catch (error) {
+      console.error('An error occurred:', error);
       if (error.message.includes('Not a valid comment ID')) {
          res.status(400).json({ error: error.message });
       } else if (error.message.includes('Comment not found')) {

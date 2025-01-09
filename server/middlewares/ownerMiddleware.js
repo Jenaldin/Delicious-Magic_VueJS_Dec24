@@ -15,6 +15,7 @@ const isRecipeOwner = async (req, res, next) => {
       req.recipe = recipe;
       next();
    } catch (error) {
+      console.error('An error occurred:', error);
       res.status(500).json({ error: 'Internal server error: ' + error.message });
    }
 };
@@ -32,6 +33,7 @@ const isProfileOwner = async (req, res, next) => {
       req.user = user;
       next();
    } catch (error) {
+      console.error('An error occurred:', error);
       res.status(500).json({ error: 'Internal server error: ' + error.message });
    }
 };
@@ -49,6 +51,7 @@ const isCommentOwner = async (req, res, next) => {
       req.comment = comment;
       next();
    } catch (error) {
+      console.error('An error occurred:', error);
       res.status(500).json({ error: 'Internal server error: ' + error.message });
    }
 };

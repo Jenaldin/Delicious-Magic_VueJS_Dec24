@@ -7,6 +7,7 @@ const registerUser = async (req, res) => {
     const { token, username, id } = result;
     res.status(200).json({ message: "Registration successful", token, username, id });
   } catch (error) {
+    console.error('An error occurred:', error);
     if (error.name === 'ValidationError') {
       res.status(400).json({ error: 'Invalid data: ' + error.message });
     } else if (error.code === 11000) { 
@@ -24,6 +25,7 @@ const loginUser = async (req, res) => {
     const { token, username, id } = result;
     res.status(200).json({ message: "Login successful", token, username, id });
   } catch (error) {
+    console.error('An error occurred:', error);
     if (error.message === 'Invalid credentials') {
       res.status(401).json({ error: error.message });
     } else {
@@ -37,6 +39,7 @@ const logoutUser = async (req, res) => {
     res.clearCookie("auth");
     res.status(200).json({ message: "Logout successful" });
   } catch (error) {
+    console.error('An error occurred:', error);
     res.status(500).json({ error: 'Internal server error: ' + error.message });
   }
 };
@@ -46,6 +49,7 @@ const getUser = async (req, res) => {
     const user = await get(req.params.userId);
     res.status(200).json(user);
   } catch (error) {
+    console.error('An error occurred:', error);
     if (error.message.includes('Not a valid user ID')) {
       res.status(400).json({ error: error.message });
     } else if (error.message.includes('User not found')) {
@@ -63,6 +67,7 @@ const editUser = async (req, res) => {
      await edit(userId, payloadData);
      res.status(200).json({message: 'Profile edited successfully'})
   } catch (error) {
+    console.error('An error occurred:', error);
      if (error.message.includes('Not a valid user ID')) {
         res.status(400).json({ error: error.message });
      } else if (error.message.includes('User not found')) {
@@ -79,6 +84,7 @@ const addFavorite = async (req, res) => {
     await favorites(userId, recipeId);
     res.status(200).json({message: 'Recipe added to favorites successfully'})
   } catch (error) {
+    console.error('An error occurred:', error);
     if (error.message.includes('Not a valid user or recipe ID')) {
       res.status(400).json({ error: error.message });
    } else if (error.message.includes('User not found')) {

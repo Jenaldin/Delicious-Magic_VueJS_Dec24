@@ -13,7 +13,8 @@ export const authMiddleware = async (req, res, next) => {
     req.user = decodedToken;
     res.locals.isAuthenticated = true;
     next();
-  } catch (err) {
+  } catch (error) {
+    console.error('An error occurred:', error);
     res.clearCookie('auth');
     res.status(401).json({ message: 'Unauthorized' });
   }
