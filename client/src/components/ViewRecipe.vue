@@ -89,7 +89,7 @@ const del = async () => {
 
 <template>
   <Loader />
-
+  <div v-if="recipe">
   <v-card class="recipe-card">
     <v-card-title>
       <h2>{{ recipe.title }}</h2>
@@ -180,6 +180,7 @@ const del = async () => {
   <v-snackbar v-model="snackbar.show" :color="snackbar.color">
     {{ snackbar.message }}
   </v-snackbar>
+</div>
 </template>
 
 <style scoped>
