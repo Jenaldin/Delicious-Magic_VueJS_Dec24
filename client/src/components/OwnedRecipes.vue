@@ -34,6 +34,7 @@ const fetchRecipesFromUser = async () => {
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
     )
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.response?.data?.error || error.message,
@@ -56,6 +57,7 @@ const del = async (recipeId) => {
     snackbar.value.show = true
     await fetchRecipesFromUser()
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value.message = error.response?.data?.error || error.message
     snackbar.value.color = 'red-darken-4'
     snackbar.value.show = true

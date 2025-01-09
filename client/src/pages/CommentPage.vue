@@ -28,6 +28,7 @@ const fetchComm = async () => {
     loadingStore.setLoading(true)
     comments.value = await getAllComments(recipeId);  
   } catch (error) {
+    console.error('An error occurred:', error);
    snackbar.value = {
       show: true,
       message: error.response.data.error || 'Error during fetching comments.',
@@ -51,6 +52,7 @@ const addComm = async (comment) => {
     };
     await fetchComm();
   } catch (error) {
+    console.error('An error occurred:', error);
    snackbar.value = {
       show: true,
       message: error.response.data.error || 'Failed to add comment. Please try again.',

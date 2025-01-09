@@ -27,6 +27,7 @@ const fetchRecipesFromUser = async () => {
     const user = await getUser(props.userId)
     recipesFav.value = user.favorites.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.response?.data?.error || error.message,

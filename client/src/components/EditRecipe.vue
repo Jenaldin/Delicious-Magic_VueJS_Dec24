@@ -78,6 +78,7 @@ const loadRecipe = async () => {
       portions: data.portions
     };
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.response?.data?.error || 'Failed to load recipe. Please try again.',
@@ -108,6 +109,7 @@ const submitForm = async () => {
       router.push(`/view-recipe/${recipeId}`);
     }, 1000);
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.response?.data?.error || 'Failed to update recipe. Please try again.',

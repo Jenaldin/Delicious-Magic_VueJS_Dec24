@@ -58,6 +58,7 @@ const loginUser = async () => {
       router.push('/');
     }, 1000);
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.response.data.error || 'Login failed. Please try again.',

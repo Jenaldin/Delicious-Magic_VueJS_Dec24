@@ -85,6 +85,7 @@ const submitForm = async () => {
       router.push('/catalog');
     }, 1000);
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.response?.data?.error || 'Failed to add recipe. Please try again.',

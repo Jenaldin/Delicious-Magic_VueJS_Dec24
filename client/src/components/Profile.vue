@@ -43,6 +43,7 @@ const fetchInfo = async () => {
       loadingStore.setLoading(true)
       user.value = await getUser(props.userId)
    } catch (error) {
+      console.error('An error occurred:', error);
       snackbar.value = {
          show: true,
          message: error.response?.data?.error || error.message,
@@ -75,6 +76,7 @@ const editProfile = async () => {
       snackbar.value.show = true
       isEditMode.value = false
    } catch (error) {
+      console.error('An error occurred:', error);
       snackbar.value.message = error.response?.data?.error || error.message
       snackbar.value.color = 'red-darken-4'
       snackbar.value.show = true

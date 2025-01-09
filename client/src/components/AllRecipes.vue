@@ -34,6 +34,7 @@ const fetchRecipes = async (type, page) => {
       catalogStore.drinkTotal = data.total;
     }
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.message,

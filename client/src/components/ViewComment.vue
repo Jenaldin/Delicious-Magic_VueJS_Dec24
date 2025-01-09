@@ -53,7 +53,7 @@ const edit = async () => {
          emit('editComment');
     }, 1000);
     } catch (error) {
-      console.error('Error editing comment:', error);
+      console.error('An error occurred:', error);
       snackbar.value = {
         show: true,
         message: error.response.data.error || 'Failed to edit comment. Please try again.',
@@ -81,7 +81,7 @@ const del = async () => {
       emit('deleteComment');
     }, 1000);
   } catch (error) {
-    console.error('Error deleting comment:', error);
+    console.error('An error occurred:', error);
     snackbar.value = {
       show: true,
       message: error.response.data.error || 'Failed to delete comment. Please try again.',

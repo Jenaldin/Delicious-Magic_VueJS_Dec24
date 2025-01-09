@@ -31,6 +31,7 @@ const fetchRecipe = async (id) => {
     loadingStore.setLoading(true)
     recipe.value = await getRecipe(id)
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value.message = error.response?.data?.error || error.message
     snackbar.value.color = 'red-darken-4'
     snackbar.value.show = true
@@ -55,6 +56,7 @@ const rate = async (rating) => {
     snackbar.value.color = 'green-darken-4'
     snackbar.value.show = true
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value.message = error.response?.data?.error || error.message
     snackbar.value.color = 'red-darken-4'
     snackbar.value.show = true
@@ -68,6 +70,7 @@ const toFavorite = async () => {
     snackbar.value.color = 'green-darken-4'
     snackbar.value.show = true
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value.message = error.response?.data?.error || error.message
     snackbar.value.color = 'red-darken-4'
     snackbar.value.show = true
@@ -84,6 +87,7 @@ const del = async () => {
       router.push('/catalog')
     }, 1000)
   } catch (error) {
+    console.error('An error occurred:', error);
     snackbar.value.message = error.response?.data?.error || error.message
     snackbar.value.color = 'red-darken-4'
     snackbar.value.show = true
