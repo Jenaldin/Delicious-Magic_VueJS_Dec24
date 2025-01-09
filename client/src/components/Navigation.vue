@@ -9,9 +9,12 @@ const snackbar = computed(() => authStore.snackbar);
 
 <template>
   <v-toolbar>
-    <v-img src="magic_large.png"></v-img>
+    <v-row>
+      <v-col>
+        <v-img src="/fav-large.png" class="nav-img"></v-img>
+      </v-col>
+    </v-row>
     <v-toolbar-title>Delicious Magic</v-toolbar-title>
-    <v-spacer></v-spacer>
     <v-btn color="amber-darken-1" text to="/">Home</v-btn>
     <v-btn color="amber-darken-1" text to="/about">About</v-btn>
     <v-btn color="amber-darken-1" text to="/catalog">All Recipes</v-btn>
@@ -36,8 +39,18 @@ const snackbar = computed(() => authStore.snackbar);
   background-color: #fafafa;
 }
 
+.nav-img {
+  max-width: 65px;
+  max-height: 65px;
+  width: auto;
+  height: auto;
+}
+
 .v-toolbar-title {
-  padding: 1rem;
+  margin: auto;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 26px;
 }
 
 .v-btn {
