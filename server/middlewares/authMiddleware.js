@@ -1,9 +1,11 @@
-import { verify } from '../utils/jwt.js';
+import { verify } from "../utils/jwt.js";
 
-const secret = process.env.SECRET || 'vape1097#%%#34yhx148fiuwehfi&*@ushering9357m30945rc1mh19';
+const secret =
+  process.env.SECRET ||
+  "vape1097#%%#34yhx148fiuwehfi&*@ushering9357m30945rc1mh19";
 
 export const authMiddleware = async (req, res, next) => {
-  const token = req.cookies['auth'];
+  const token = req.cookies["auth"];
   if (!token) {
     return next();
   }
@@ -14,22 +16,22 @@ export const authMiddleware = async (req, res, next) => {
     res.locals.isAuthenticated = true;
     next();
   } catch (error) {
-    console.error('An error occurred:', error);
-    res.clearCookie('auth');
-    res.status(401).json({ message: 'Unauthorized' });
+    console.error("An error occurred:", error);
+    res.clearCookie("auth");
+    res.status(401).json({ message: "Unauthorized" });
   }
 };
 
 export const isAuth = (req, res, next) => {
   if (!req.user) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: "Unauthorized" });
   }
   next();
 };
 
 export const isGuest = (req, res, next) => {
   if (req.user) {
-    return res.status(403).json({ message: 'Forbidden' });
+    return res.status(403).json({ message: "Forbidden" });
   }
   next();
 };
