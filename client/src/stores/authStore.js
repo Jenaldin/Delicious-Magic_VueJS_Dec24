@@ -48,6 +48,7 @@ export const useAuthStore = defineStore('auth', () => {
         router.push('/');
       }, 1000);
     } catch (error) {
+      console.error('An error occurred:', error);
       snackbar.value = {
         show: true,
         message: 'Logout failed. Please try again.',
