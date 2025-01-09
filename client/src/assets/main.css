@@ -99,33 +99,3 @@ h1, h2, h3 {
   justify-content: center;
   text-align: center;
 }
-
-/* Responsive two-column layout */
-/* .two-column {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.two-column > .left-section,
-.two-column > .right-section {
-  flex: 1;
-  min-width: 280px; 
-}
-
-@media (max-width: 768px) {
-  .two-column {
-    flex-direction: column;
-  }
-} */
-
-/* Additional styles*/
-/* .recipe-details {
-  margin-bottom: 2rem;
-}
-
-.comments-section {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-header-footer);
-} */
