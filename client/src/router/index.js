@@ -16,7 +16,8 @@ const routes = [
   { path: '/edit-recipe/:id', name: 'edit-recipe', component: Details, meta: { requiresAuth: true } },
   { path: '/user', name: 'user', component: User, meta: { requiresAuth: true } },
   { path: '/user/:userId', name: 'user-id', component: User },
-  { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('../pages/NotFoundPage.vue') },
+  { path: '/not-found', name: 'not-found', component: () => import('../pages/NotFoundPage.vue') },
+  { path: '/:pathMatch(.*)*', redirect: { name: 'not-found'} },
 ];
 
 const router = createRouter({
