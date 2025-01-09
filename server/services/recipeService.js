@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Recipe from "../models/recipeModel.js";
 import User from "../models/userModel.js";
+import Comment from "../models/commentModel.js";
 
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
@@ -87,6 +88,7 @@ const del = async (recipeId) => {
       if (owner) { 
          await User.updateOne({ _id: owner._id }, { $pull: { recipesOwned: recipeId } });
       }
+      await Comment.deleteMany({ recipe: recipeId });
       return 'Recipe and references to it have been deleted.';
    } catch (error) {
       throw new Error('Error deleting recipe: ' + error.message);
