@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main>
+  <main class="widthMax">
     <div class="centered-content">
       <h1>Greetings, it's a pleasure to meet you!</h1>
       <h3>This web app is a student project in VueJS</h3>
@@ -27,6 +27,9 @@
 </template>
 
 <style scoped>
+.widthMax {
+  max-width: 1200px;
+}
 .main-info {
   margin: 3rem;
 }

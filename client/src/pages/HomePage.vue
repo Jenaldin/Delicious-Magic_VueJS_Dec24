@@ -8,7 +8,7 @@ const username = computed(() => authStore.username);
 </script>
 
 <template>
-  <main>
+  <main class="widthMax">
     <div class="centered-content">
       <template v-if="isAuthenticated">
         <h1>Hello, Chef {{ username }}!</h1>
@@ -44,6 +44,9 @@ const username = computed(() => authStore.username);
 </template>
 
 <style scoped>
+.widthMax {
+  max-width: 1200px;
+}
 .main-info {
   margin: 3rem;
 }

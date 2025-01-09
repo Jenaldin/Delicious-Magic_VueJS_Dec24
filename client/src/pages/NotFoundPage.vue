@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main>
+  <main class="widthMax">
     <div class="centered-content">
       <h1>Oops! Dark Magics!</h1>
       <h3>The recipe scroll you are looking for has vanished!</h3>
@@ -18,6 +18,9 @@
 </template>
 
 <style scoped>
+.widthMax {
+  max-width: 1200px;
+}
 .centered-content {
   margin: 3rem;
 }
