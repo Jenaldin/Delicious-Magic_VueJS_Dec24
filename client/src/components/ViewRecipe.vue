@@ -88,7 +88,11 @@ const del = async () => {
         <h2>{{ recipe.title }}</h2>
       </v-card-title>
       <v-card-title
-        >Added by {{ recipe.owner.username }} on {{ formatDate(recipe.createdAt) }}</v-card-title
+        >Added by
+        <router-link :to="{ name: 'user-id', params: { userId: recipe.owner._id } }">
+          {{ recipe.owner.username }}
+        </router-link>
+        on {{ formatDate(recipe.createdAt) }}</v-card-title
       >
       <v-card-subtitle>
         <h4>Time to prepare: {{ recipe.prepTime }}</h4>

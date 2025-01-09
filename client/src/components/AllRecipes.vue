@@ -1,61 +1,61 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
-import { useCatalogStore } from '../stores/catalogStore';
-import { useRouter } from 'vue-router';
-import { getAllRecipes } from '../api/recipeApi';
-import { formatDate } from '../utils/formatDates';
-import { useLoadingStore } from '../stores/loadingStore';
-import Loader from '../components/Loader.vue';
+import { ref, onMounted, computed, watch } from 'vue'
+import { useCatalogStore } from '../stores/catalogStore'
+import { useRouter } from 'vue-router'
+import { getAllRecipes } from '../api/recipeApi'
+import { formatDate } from '../utils/formatDates'
+import { useLoadingStore } from '../stores/loadingStore'
+import Loader from '../components/Loader.vue'
 
-const catalogStore = useCatalogStore();
-const router = useRouter();
-const loadingStore = useLoadingStore();
+const catalogStore = useCatalogStore()
+const router = useRouter()
+const loadingStore = useLoadingStore()
 
-const foodPage = ref(1);
-const drinkPage = ref(1);
-const pageSize = 6;
+const foodPage = ref(1)
+const drinkPage = ref(1)
+const pageSize = 6
 
 const snackbar = ref({
   show: false,
   message: '',
-  color: 'red-darken-4'
-});
+  color: 'red-darken-4',
+})
 
 const fetchRecipes = async (type, page) => {
   try {
-    loadingStore.setLoading(true);
-    const data = await getAllRecipes(type, page, pageSize);
+    loadingStore.setLoading(true)
+    const data = await getAllRecipes(type, page, pageSize)
     if (type === 'food') {
-      catalogStore.foodRecipes = data.recipes;
-      catalogStore.foodTotal = data.total;
+      catalogStore.foodRecipes = data.recipes
+      catalogStore.foodTotal = data.total
     } else {
-      catalogStore.drinkRecipes = data.recipes;
-      catalogStore.drinkTotal = data.total;
+      catalogStore.drinkRecipes = data.recipes
+      catalogStore.drinkTotal = data.total
     }
   } catch (error) {
     snackbar.value = {
       show: true,
       message: error.message,
-      color: 'red-darken-4'
-    };
+      color: 'red-darken-4',
+    }
   } finally {
-    loadingStore.setLoading(false);
+    loadingStore.setLoading(false)
   }
-};
+}
 
 onMounted(() => {
-  fetchRecipes('food', foodPage.value);
-  fetchRecipes('drink', drinkPage.value);
-});
+  fetchRecipes('food', foodPage.value)
+  fetchRecipes('drink', drinkPage.value)
+})
 watch(foodPage, (newPage) => {
-  fetchRecipes('food', newPage);
-});
+  fetchRecipes('food', newPage)
+})
 watch(drinkPage, (newPage) => {
-  fetchRecipes('drink', newPage);
-});
+  fetchRecipes('drink', newPage)
+})
 
-const foodRecipes = computed(() => catalogStore.foodRecipes);
-const drinkRecipes = computed(() => catalogStore.drinkRecipes);
+const foodRecipes = computed(() => catalogStore.foodRecipes)
+const drinkRecipes = computed(() => catalogStore.drinkRecipes)
 </script>
 
 <template>
@@ -69,13 +69,28 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
             <v-col v-for="recipe in foodRecipes" :key="recipe._id" cols="12" sm="6" md="4">
               <v-card>
                 <v-card-item>
-                  <v-img :src="recipe.image ? recipe.image : '/img-placeholder.png'" alt="Recipe Image" width="65" height="65"></v-img>
+                  <v-img
+                    :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+                    alt="Recipe Image"
+                    width="65"
+                    height="65"
+                  ></v-img>
                 </v-card-item>
                 <v-card-title>{{ recipe.title }}</v-card-title>
                 <v-card-subtitle>Time to make: {{ recipe.prepTime }} mins</v-card-subtitle>
-                <v-card-subtitle>Added on {{ formatDate(recipe.createdAt) }} by {{ recipe.owner.username }}</v-card-subtitle>
+                <v-card-subtitle>
+                  Added on {{ formatDate(recipe.createdAt) }} by
+                  <router-link :to="{ name: 'user-id', params: { userId: recipe.owner._id } }">
+                    {{ recipe.owner.username }}
+                  </router-link>
+                </v-card-subtitle>
+
                 <v-card-actions>
-                  <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })">
+                  <v-btn
+                    color="amber-darken-1"
+                    variant="tonal"
+                    @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
+                  >
                     View
                   </v-btn>
                 </v-card-actions>
@@ -83,7 +98,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
             </v-col>
           </template>
           <template v-else>
-            <h4>No food scrolls to show </h4>
+            <h4>No food scrolls to show</h4>
           </template>
         </v-row>
         <v-pagination
@@ -101,13 +116,27 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
             <v-col v-for="recipe in drinkRecipes" :key="recipe._id" cols="12" sm="6" md="4">
               <v-card>
                 <v-card-item>
-                  <v-img :src="recipe.image ? recipe.image : '/img-placeholder.png'" alt="Recipe Image" width="65" height="65"></v-img>
+                  <v-img
+                    :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+                    alt="Recipe Image"
+                    width="65"
+                    height="65"
+                  ></v-img>
                 </v-card-item>
                 <v-card-title>{{ recipe.title }}</v-card-title>
                 <v-card-subtitle>Time to make: {{ recipe.prepTime }} mins</v-card-subtitle>
-                <v-card-subtitle>Added on {{ formatDate(recipe.createdAt) }} by {{ recipe.owner.username }}</v-card-subtitle>
+                <v-card-subtitle>
+                  Added on {{ formatDate(recipe.createdAt) }} by
+                  <router-link :to="{ name: 'user-id', params: { userId: recipe.owner._id } }">
+                    {{ recipe.owner.username }}
+                  </router-link>
+                </v-card-subtitle>
                 <v-card-actions>
-                  <v-btn color="amber-darken-1" variant="tonal" @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })">
+                  <v-btn
+                    color="amber-darken-1"
+                    variant="tonal"
+                    @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
+                  >
                     View
                   </v-btn>
                 </v-card-actions>
@@ -134,7 +163,9 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
 </template>
 
 <style scoped>
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   text-align: center;
   margin-bottom: 1.5rem;
 }
@@ -151,8 +182,8 @@ h2, h3, h4 {
   justify-content: center;
 }
 
-.div-space { 
-   margin-top: 1.5rem; 
+.div-space {
+  margin-top: 1.5rem;
 }
 
 .pagin {

@@ -120,7 +120,9 @@ const del = async () => {
             <v-col>
               <v-card-title>{{ comment.title }}</v-card-title>
               <v-card-subtitle>
-                <h4>By {{ comment.owner.username }} on {{ formatDate(comment.createdAt) }}</h4>
+                <h4>By <router-link :to="{ name: 'user-id', params: { userId: comment.owner._id } }">
+                    {{ comment.owner.username }}
+                  </router-link> on {{ formatDate(comment.createdAt) }}</h4>
               </v-card-subtitle>
             </v-col>
             <v-col>
