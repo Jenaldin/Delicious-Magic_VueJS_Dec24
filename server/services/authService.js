@@ -101,7 +101,6 @@ const favorites = async (userId, recipeId) => {
     return 'Recipe added to favorites successfully.'
   } catch (error) {
     console.error('An error occurred:', error);
-    console.log(error.message);
     throw new Error('Error adding recipe to favorites: ' + error.message)
   }
 };
