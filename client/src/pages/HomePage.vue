@@ -1,6 +1,6 @@
 <script setup>
-import { computed } from 'vue';
-import { useAuthStore } from '../stores/authStore';
+import { computed } from "vue";
+import { useAuthStore } from "../stores/authStore";
 
 const authStore = useAuthStore();
 const isAuthenticated = computed(() => authStore.isAuthenticated);
@@ -32,12 +32,18 @@ const username = computed(() => authStore.username);
         </li>
         <li>
           <h4>Your Cookbook</h4>
-          <p>If you become part of our community, add recipes and build your Cookbook</p>
+          <p>
+            If you become part of our community, add recipes and build your
+            Cookbook
+          </p>
         </li>
       </ul>
     </div>
     <div class="centered-content">
-      <h3>If you wish to know more about Delicious Magic, check out the <router-link to="/about">About page</router-link></h3>
+      <h3>
+        If you wish to know more about Delicious Magic, check out the
+        <router-link to="/about">About page</router-link>
+      </h3>
       <h4>Happy cooking, mixing and delicious magic!</h4>
     </div>
   </main>

@@ -1,7 +1,7 @@
-import axios from 'axios';
-import axiosApi from '../axios.js'
+import axios from "axios";
+import axiosApi from "../axios.js";
 
-const API_URL = 'http://localhost:3000/api/user';
+const API_URL = "http://localhost:3000/api/user";
 
 export const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register`, userData);

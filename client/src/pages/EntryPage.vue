@@ -1,20 +1,20 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import Login from '../components/Login.vue';
-import Register from '../components/Register.vue';
+import { ref, computed, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import Login from "../components/Login.vue";
+import Register from "../components/Register.vue";
 
 const route = useRoute();
 const router = useRouter();
-const tab = ref(route.query.tab || 'login');
+const tab = ref(route.query.tab || "login");
 
 const tabs = computed(() => [
-  { value: 'login', label: 'Login' },
-  { value: 'register', label: 'Register' }
+  { value: "login", label: "Login" },
+  { value: "register", label: "Register" },
 ]);
 
 watch(tab, (newTab) => {
-   router.push({ path: route.path, query: { ...route.query, tab: newTab } });
+  router.push({ path: route.path, query: { ...route.query, tab: newTab } });
 });
 </script>
 
@@ -24,7 +24,11 @@ watch(tab, (newTab) => {
       <v-col cols="12" md="8">
         <v-card>
           <v-tabs v-model="tab" background-color="#80CBC4">
-            <v-tab v-for="tabOption in tabs" :key="tabOption.value" :value="tabOption.value">
+            <v-tab
+              v-for="tabOption in tabs"
+              :key="tabOption.value"
+              :value="tabOption.value"
+            >
               {{ tabOption.label }}
             </v-tab>
           </v-tabs>
@@ -50,6 +54,6 @@ watch(tab, (newTab) => {
   max-width: 1200px;
 }
 .v-tabs {
-  background-color: #FFC107;
+  background-color: #ffc107;
 }
 </style>

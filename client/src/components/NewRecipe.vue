@@ -1,18 +1,24 @@
 <script setup>
-import { ref, computed } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required, minLength, maxLength, numeric, url } from '@vuelidate/validators';
-import { addRecipe } from '../api/recipeApi';
-import { useRouter } from 'vue-router';
+import { ref, computed } from "vue";
+import useVuelidate from "@vuelidate/core";
+import {
+  required,
+  minLength,
+  maxLength,
+  numeric,
+  url,
+} from "@vuelidate/validators";
+import { addRecipe } from "../api/recipeApi";
+import { useRouter } from "vue-router";
 
 const form = ref({
-  title: '',
-  type: '',
-  image: '',
-  ingredients: ['', '', ''],
-  steps: ['', '', ''],
-  prepTime: '',
-  portions: ''
+  title: "",
+  type: "",
+  image: "",
+  ingredients: ["", "", ""],
+  steps: ["", "", ""],
+  prepTime: "",
+  portions: "",
 });
 
 const rules = computed(() => ({
@@ -22,7 +28,7 @@ const rules = computed(() => ({
   ingredients: { required },
   steps: { required },
   prepTime: { required, numeric },
-  portions: { required, numeric }
+  portions: { required, numeric },
 }));
 
 const v$ = useVuelidate(rules, form);
@@ -31,20 +37,34 @@ const router = useRouter();
 
 const snackbar = ref({
   show: false,
-  message: '',
-  color: 'green-darken-4'
+  message: "",
+  color: "green-darken-4",
 });
 
-const titleErrors = computed(() => v$.value.title.$errors.map(e => e.$message));
-const typeErrors = computed(() => v$.value.type.$errors.map(e => e.$message));
-const imageErrors = computed(() => v$.value.image.$errors.map(e => e.$message));
-const prepTimeErrors = computed(() => v$.value.prepTime.$errors.map(e => e.$message));
-const portionsErrors = computed(() => v$.value.portions.$errors.map(e => e.$message));
-const ingredientErrors = (index) => v$.value.ingredients[index] ? v$.value.ingredients[index].$errors.map(e => e.$message) : [];
-const stepErrors = (index) => v$.value.steps[index] ? v$.value.steps[index].$errors.map(e => e.$message) : [];
+const titleErrors = computed(() =>
+  v$.value.title.$errors.map((e) => e.$message),
+);
+const typeErrors = computed(() => v$.value.type.$errors.map((e) => e.$message));
+const imageErrors = computed(() =>
+  v$.value.image.$errors.map((e) => e.$message),
+);
+const prepTimeErrors = computed(() =>
+  v$.value.prepTime.$errors.map((e) => e.$message),
+);
+const portionsErrors = computed(() =>
+  v$.value.portions.$errors.map((e) => e.$message),
+);
+const ingredientErrors = (index) =>
+  v$.value.ingredients[index]
+    ? v$.value.ingredients[index].$errors.map((e) => e.$message)
+    : [];
+const stepErrors = (index) =>
+  v$.value.steps[index]
+    ? v$.value.steps[index].$errors.map((e) => e.$message)
+    : [];
 
 const addIngredient = () => {
-  form.value.ingredients.push('');
+  form.value.ingredients.push("");
 };
 
 const removeIngredient = (index) => {
@@ -54,7 +74,7 @@ const removeIngredient = (index) => {
 };
 
 const addStep = () => {
-  form.value.steps.push('');
+  form.value.steps.push("");
 };
 
 const removeStep = (index) => {
@@ -68,8 +88,8 @@ const submitForm = async () => {
   if (v$.value.$invalid) {
     snackbar.value = {
       show: true,
-      message: 'Please fill in all fields correctly.',
-      color: 'red-darken-4'
+      message: "Please fill in all fields correctly.",
+      color: "red-darken-4",
     };
     return;
   }
@@ -78,25 +98,27 @@ const submitForm = async () => {
     await addRecipe(form.value);
     snackbar.value = {
       show: true,
-      message: 'Recipe added successfully!',
-      color: 'green-darken-4'
+      message: "Recipe added successfully!",
+      color: "green-darken-4",
     };
     setTimeout(() => {
-      router.push('/catalog');
+      router.push("/catalog");
     }, 1000);
   } catch (error) {
-    console.error('An error occurred:', error);
+    console.error("An error occurred:", error);
     snackbar.value = {
       show: true,
-      message: error.response?.data?.error || 'Failed to add recipe. Please try again.',
-      color: 'red-darken-4'
+      message:
+        error.response?.data?.error ||
+        "Failed to add recipe. Please try again.",
+      color: "red-darken-4",
     };
   }
 };
 </script>
 
 <template>
-   <h2>Add new Recipe</h2>
+  <h2>Add new Recipe</h2>
   <v-container>
     <v-form @submit.prevent="submitForm">
       <v-row>
@@ -134,7 +156,7 @@ const submitForm = async () => {
           ></v-text-field>
         </v-col>
       </v-row>
-      
+
       <v-text-field
         v-model.trim="form.image"
         :error-messages="imageErrors"
@@ -144,17 +166,32 @@ const submitForm = async () => {
       <v-row>
         <v-col>
           <v-list>
-            <v-list-item v-for="(ingredient, index) in form.ingredients" :key="index">
+            <v-list-item
+              v-for="(ingredient, index) in form.ingredients"
+              :key="index"
+            >
               <v-text-field
                 v-model.trim="form.ingredients[index]"
                 :error-messages="ingredientErrors(index)"
                 label="Ingredient"
                 required
               ></v-text-field>
-              <v-btn v-if="index >= 2" icon @click="addIngredient" color="green-darken-4" size="x-small">
+              <v-btn
+                v-if="index >= 2"
+                icon
+                @click="addIngredient"
+                color="green-darken-4"
+                size="x-small"
+              >
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
-              <v-btn v-if="index >= 3" icon @click="removeIngredient(index)" color="red-darken-4" size="x-small">
+              <v-btn
+                v-if="index >= 3"
+                icon
+                @click="removeIngredient(index)"
+                color="red-darken-4"
+                size="x-small"
+              >
                 <v-icon>mdi-trash-can-outline</v-icon>
               </v-btn>
             </v-list-item>
@@ -169,10 +206,22 @@ const submitForm = async () => {
                 label="Step"
                 required
               ></v-text-field>
-              <v-btn v-if="index >= 2" icon @click="addStep" color="green-darken-4" size="x-small">
+              <v-btn
+                v-if="index >= 2"
+                icon
+                @click="addStep"
+                color="green-darken-4"
+                size="x-small"
+              >
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
-              <v-btn v-if="index >= 3" icon @click="removeStep(index)" color="red-darken-4" size="x-small">
+              <v-btn
+                v-if="index >= 3"
+                icon
+                @click="removeStep(index)"
+                color="red-darken-4"
+                size="x-small"
+              >
                 <v-icon>mdi-trash-can-outline</v-icon>
               </v-btn>
             </v-list-item>
@@ -195,6 +244,6 @@ const submitForm = async () => {
   max-width: 1200px;
 }
 .v-btn {
-  margin: 0.2rem
+  margin: 0.2rem;
 }
 </style>

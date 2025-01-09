@@ -1,20 +1,27 @@
 <script setup>
-import { ref, computed } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required, minLength, maxLength, email, sameAs, url } from '@vuelidate/validators';
-import { useAuthStore } from '../stores/authStore';
-import { useRouter } from 'vue-router';
-import { register } from '../api/authUserApi';
+import { ref, computed } from "vue";
+import useVuelidate from "@vuelidate/core";
+import {
+  required,
+  minLength,
+  maxLength,
+  email,
+  sameAs,
+  url,
+} from "@vuelidate/validators";
+import { useAuthStore } from "../stores/authStore";
+import { useRouter } from "vue-router";
+import { register } from "../api/authUserApi";
 
 const form = ref({
-  username: '',
-  email: '',
-  password: '',
-  repassword: '',
-  avatar: ''
+  username: "",
+  email: "",
+  password: "",
+  repassword: "",
+  avatar: "",
 });
 
-const showPassword = ref(false); 
+const showPassword = ref(false);
 const showRepassword = ref(false);
 
 const passwordValue = computed(() => form.value.password);
@@ -24,7 +31,7 @@ const rules = computed(() => ({
   email: { required, email, minLength: minLength(5), maxLength: maxLength(15) },
   password: { required, minLength: minLength(4), maxLength: maxLength(12) },
   repassword: { required, sameAsPassword: sameAs(passwordValue) },
-  avatar: { url }
+  avatar: { url },
 }));
 
 const v$ = useVuelidate(rules, form);
@@ -34,15 +41,25 @@ const router = useRouter();
 
 const snackbar = ref({
   show: false,
-  message: '',
-  color: 'green-darken-4'
+  message: "",
+  color: "green-darken-4",
 });
 
-const usernameErrors = computed(() => v$.value.username.$errors.map(e => e.$message));
-const emailErrors = computed(() => v$.value.email.$errors.map(e => e.$message));
-const passwordErrors = computed(() => v$.value.password.$errors.map(e => e.$message));
-const repasswordErrors = computed(() => v$.value.repassword.$errors.map(e => e.$message));
-const avatarErrors = computed(() => v$.value.avatar.$errors.map(e => e.$message));
+const usernameErrors = computed(() =>
+  v$.value.username.$errors.map((e) => e.$message),
+);
+const emailErrors = computed(() =>
+  v$.value.email.$errors.map((e) => e.$message),
+);
+const passwordErrors = computed(() =>
+  v$.value.password.$errors.map((e) => e.$message),
+);
+const repasswordErrors = computed(() =>
+  v$.value.repassword.$errors.map((e) => e.$message),
+);
+const avatarErrors = computed(() =>
+  v$.value.avatar.$errors.map((e) => e.$message),
+);
 
 const registerUser = async () => {
   v$.value.$touch();
@@ -50,8 +67,8 @@ const registerUser = async () => {
   if (v$.value.$invalid) {
     snackbar.value = {
       show: true,
-      message: 'Please fill in all fields correctly.',
-      color: 'red-darken-4'
+      message: "Please fill in all fields correctly.",
+      color: "red-darken-4",
     };
     return;
   }
@@ -65,19 +82,20 @@ const registerUser = async () => {
 
     snackbar.value = {
       show: true,
-      message: 'Registration successful!',
-      color: 'green-darken-4'
+      message: "Registration successful!",
+      color: "green-darken-4",
     };
 
     setTimeout(() => {
-      router.push('/');
+      router.push("/");
     }, 1000);
   } catch (error) {
-    console.error('An error occurred:', error);
+    console.error("An error occurred:", error);
     snackbar.value = {
       show: true,
-      message: error.response.data.error || 'Registration failed. Please try again.',
-      color: 'red-darken-4'
+      message:
+        error.response.data.error || "Registration failed. Please try again.",
+      color: "red-darken-4",
     };
   }
 };
@@ -141,5 +159,4 @@ const registerUser = async () => {
   </v-snackbar>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

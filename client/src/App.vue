@@ -1,6 +1,6 @@
 <script setup>
-import Navigation from './components/Navigation.vue';
-import Footer from './components/Footer.vue';
+import Navigation from "./components/Navigation.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import Footer from './components/Footer.vue';
     <v-app-bar app>
       <Navigation />
     </v-app-bar>
-    
+
     <v-main>
       <router-view />
     </v-main>

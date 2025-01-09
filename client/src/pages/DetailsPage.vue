@@ -1,15 +1,15 @@
 <script setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-import NewRecipe from '../components/NewRecipe.vue';
-import EditRecipe from '../components/EditRecipe.vue';
-import ViewRecipe from '../components/ViewRecipe.vue';
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import NewRecipe from "../components/NewRecipe.vue";
+import EditRecipe from "../components/EditRecipe.vue";
+import ViewRecipe from "../components/ViewRecipe.vue";
 
 const route = useRoute();
 
-const isNew = computed(() => route.name === 'add-recipe');
-const isEdit = computed(() => route.name === 'edit-recipe');
-const isView = computed(() => route.name === 'view-recipe');
+const isNew = computed(() => route.name === "add-recipe");
+const isEdit = computed(() => route.name === "edit-recipe");
+const isView = computed(() => route.name === "view-recipe");
 </script>
 
 <template>
