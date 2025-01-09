@@ -4,9 +4,12 @@ import { useCatalogStore } from '../stores/catalogStore';
 import { useRouter } from 'vue-router';
 import { getAllRecipes } from '../api/recipeApi';
 import { formatDate } from '../utils/formatDates';
+import { useLoadingStore } from '../stores/loadingStore';
+import Loader from '../components/Loader.vue';
 
 const catalogStore = useCatalogStore();
 const router = useRouter();
+const loadingStore = useLoadingStore();
 
 const foodPage = ref(1);
 const drinkPage = ref(1);
@@ -20,6 +23,7 @@ const snackbar = ref({
 
 const fetchRecipes = async (type, page) => {
   try {
+    loadingStore.setLoading(true);
     const data = await getAllRecipes(type, page, pageSize);
     if (type === 'food') {
       catalogStore.foodRecipes = data.recipes;
@@ -34,6 +38,8 @@ const fetchRecipes = async (type, page) => {
       message: error.message,
       color: 'red-darken-4'
     };
+  } finally {
+    loadingStore.setLoading(false);
   }
 };
 
@@ -54,6 +60,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
 
 <template>
   <div class="recipes-all">
+    <Loader />
     <v-row>
       <v-col>
         <h3>Served at the table</h3>
