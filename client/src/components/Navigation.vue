@@ -19,7 +19,7 @@ const snackbar = computed(() => authStore.snackbar);
     <v-btn color="amber-darken-2" text to="/about">About</v-btn>
     <v-btn color="amber-darken-2" text to="/catalog">All Recipes</v-btn>
     <template v-if="!isAuthenticated">
-      <v-btn color="amber-darken-2" text to="/entry-point">Login or Register</v-btn>
+      <v-btn color="amber-darken-2" text to="/entry-point">Login/Register</v-btn>
     </template>
     <template v-else>
       <v-btn color="amber-darken-2" text to="/add-recipe">Add Recipe</v-btn>
