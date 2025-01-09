@@ -34,7 +34,7 @@ const getOwnerComm = async (commentId) => {
       if (!isValidObjectId(commentId)) {
          throw new Error('Not a valid comment ID.');
       }
-      return await Comment.findOne({commentId});
+      return await Comment.findOne({_id: commentId});
    } catch (error) {
       throw new Error('Error fetching comment ownership: ' + error.message)
    }
@@ -65,7 +65,7 @@ const edit = async (commentId, payloadData) => {
    }
 };
 
-const del = async (commentId) => {
+const del = async (commentId) => {  
    try {
       if (!isValidObjectId(commentId)) {
          throw new Error('Not a valid comment ID.');
