@@ -20,11 +20,6 @@ import Footer from './components/Footer.vue';
 </template>
 
 <style scoped>
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-}
-
 main {
   padding: 16px;
 }
