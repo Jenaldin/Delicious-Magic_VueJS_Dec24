@@ -92,7 +92,7 @@ onMounted(() => {
             <v-text-field v-model.trim="user.avatar" :error-messages="avatarErrors"
                label="Avatar URL"></v-text-field>
             <v-textarea v-model.trim="user.aboutMe" :error-messages="aboutMeErrors" label="About me"></v-textarea>
-            <v-btn color="amber" type="submit">Save Changes</v-btn>
+            <v-btn color="amber" type="submit">Update Profile</v-btn>
          </v-form>
       </div>
       <div v-else>

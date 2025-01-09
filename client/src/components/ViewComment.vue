@@ -108,7 +108,7 @@ const del = async () => {
             :error-messages="v$.editedComment.body.$errors.map(e => e.$message)"
             @blur="v$.editedComment.body.$touch"
           />
-          <v-btn color="amber" size="small" @click="edit">Submit</v-btn>
+          <v-btn color="amber" size="small" @click="edit">Update Comment</v-btn>
           <v-btn color="grey" size="small" @click="isEditing = false">Cancel</v-btn>
         </v-form>
       </v-card>

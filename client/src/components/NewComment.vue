@@ -56,7 +56,7 @@ const submitComm = () => {
         :error-messages="v$.newComment.body.$errors.map(e => e.$message)"
         @blur="v$.newComment.body.$touch"
       />
-      <v-btn color="amber" size="small" @click="submitComm">Submit</v-btn>
+      <v-btn color="amber" size="small" @click="submitComm">Save Comment</v-btn>
     </v-form>
   </v-card>
 

@@ -179,7 +179,7 @@ const submitForm = async () => {
         </v-col>
       </v-row>
 
-      <v-btn type="submit" color="amber">Submit Recipe</v-btn>
+      <v-btn type="submit" color="amber">Save Recipe</v-btn>
     </v-form>
 
     <v-snackbar v-model="snackbar.show" :color="snackbar.color" top>
