@@ -67,8 +67,8 @@ Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible 
 /user/addFav | PUT | Adds a recipe item to a user item collection | :x: | :heavy_check_mark: | **-**
 /user/edit/:userId | PUT | Updates/Edits details of a user item | :x: | **-** | :heavy_check_mark:
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
-/comment/:recipeId | GET | Retrieves all comment items associated with a recipe item | :heavy_check_mark: | :x: | **-**
-/comment/:commentId | GET | Retrieves a comment item | :heavy_check_mark: | :x: | **-**
+/comment/:recipeId | GET | Retrieves all comment items associated with a recipe item | :heavy_check_mark: | :heavy_check_mark: | **-**
+/comment/:commentId | GET | Retrieves a comment item | :heavy_check_mark: | :heavy_check_mark: | **-**
 /comment/add | POST | Creates a new comment item | :x: | :heavy_check_mark: | **-**
 /comment/edit/:commentId | PATCH | Updates/Edits the content of a comment item | :x: | **-** | :heavy_check_mark:
 /comment/delete/:commentId | DELETE | Deletes a comment item | :x: | **-** | :heavy_check_mark:
