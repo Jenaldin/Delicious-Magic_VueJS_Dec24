@@ -9,7 +9,7 @@ router.post('/register', isGuest, registerUser);
 router.post('/login', isGuest, loginUser);
 router.get('/logout', logoutUser);
 
-router.get('/:userId', isAuth, getUser);
+router.get('/:userId', getUser);
 router.put('/edit/:userId', isProfileOwner, editUser);
 router.put('/addFav', isAuth, addFavorite);
 
