@@ -16,7 +16,7 @@ export const addComment = async (formdata) => {
 };
  
 export const editComment = async (commentId, formdata) => {
-   const response = await axiosApi.put(`/comment/edit/${commentId}`, formdata);
+   const response = await axiosApi.patch(`/comment/edit/${commentId}`, formdata);
    return response.data
 }
  
