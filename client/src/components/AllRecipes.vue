@@ -59,8 +59,8 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes)
 </script>
 
 <template>
+  <Loader />
   <div class="recipes-all">
-    <Loader />
     <v-row>
       <v-col>
         <h3>Served at the table</h3>

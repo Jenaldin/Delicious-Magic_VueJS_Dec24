@@ -6,10 +6,13 @@ import { getRecipe, rateRecipe, deleteRecipe } from '../api/recipeApi'
 import { addFavorite } from '../api/authUserApi'
 import { formatDate } from '../utils/formatDates'
 import CommentPage from '../pages/CommentPage.vue'
+import { useLoadingStore } from '../stores/loadingStore'
+import Loader from '../components/Loader.vue'
 
 const route = useRoute()
 const router = useRouter()
 const auth = useAuthStore()
+const loadingStore = useLoadingStore()
 
 const recipeId = route.params.id
 const recipe = ref(null)
@@ -25,11 +28,14 @@ const snackbar = ref({
 
 const fetchRecipe = async (id) => {
   try {
+    loadingStore.setLoading(true)
     recipe.value = await getRecipe(id)
   } catch (error) {
     snackbar.value.message = error.response?.data?.error || error.message
     snackbar.value.color = 'red-darken-4'
     snackbar.value.show = true
+  } finally {
+    loadingStore.setLoading(false)
   }
 }
 
@@ -82,6 +88,7 @@ const del = async () => {
 </script>
 
 <template>
+  <Loader />
   <div v-if="recipe">
     <v-card class="recipe-card">
       <v-card-title>

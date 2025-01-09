@@ -4,6 +4,8 @@ import { getUser, editUser } from '../api/authUserApi'
 import { useAuthStore } from '../stores/authStore'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, maxLength, url } from '@vuelidate/validators'
+import { useLoadingStore } from '../stores/loadingStore'
+import Loader from '../components/Loader.vue'
 
 const props = defineProps({
    userId: {
@@ -23,6 +25,7 @@ const rules = computed(() => ({
 }))
 const v$ = useVuelidate(rules, user)
 const auth = useAuthStore()
+const loadingStore = useLoadingStore()
 const isOwner = computed(() => auth.userId === props.userId)
 const isEditMode = ref(false)
 const snackbar = ref({
@@ -37,6 +40,7 @@ const aboutMeErrors = computed(() => v$.value.aboutMe.$errors.map((e) => e.$mess
 
 const fetchInfo = async () => {
    try {
+      loadingStore.setLoading(true)
       user.value = await getUser(props.userId)
    } catch (error) {
       snackbar.value = {
@@ -44,7 +48,9 @@ const fetchInfo = async () => {
          message: error.response?.data?.error || error.message,
          color: 'red-darken-4',
       }
-   }
+   } finally {
+    loadingStore.setLoading(false)
+  }
 }
 
 const editProfile = async () => {
@@ -81,6 +87,7 @@ onMounted(() => {
 </script>
 
 <template>
+   <Loader />
    <div>
       <div v-if="isOwner">
          <v-switch v-model="isEditMode" color="amber-darken-1" label="Edit Profile" class="switch" />

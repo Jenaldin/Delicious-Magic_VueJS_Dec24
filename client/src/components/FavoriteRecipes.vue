@@ -2,6 +2,10 @@
 import { ref, onMounted } from 'vue'
 import { getUser } from '../api/authUserApi'
 import { useRouter } from 'vue-router'
+import { useLoadingStore } from '../stores/loadingStore'
+import Loader from '../components/Loader.vue'
+
+const loadingStore = useLoadingStore()
 
 const props = defineProps({
   userId: {
@@ -19,6 +23,7 @@ const snackbar = ref({
 
 const fetchRecipesFromUser = async () => {
   try {
+    loadingStore.setLoading(true)
     const user = await getUser(props.userId)
     recipesFav.value = user.favorites.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   } catch (error) {
@@ -27,6 +32,8 @@ const fetchRecipesFromUser = async () => {
       message: error.response?.data?.error || error.message,
       color: 'red-darken-4',
     }
+  } finally {
+    loadingStore.setLoading(false)
   }
 }
 
@@ -36,6 +43,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <Loader />
    <div>
      <v-card v-for="recipe in recipesFav" :key="recipe._id" class="pa-3">
        <v-row class="align-center">

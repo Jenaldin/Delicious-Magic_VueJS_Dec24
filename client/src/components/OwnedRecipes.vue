@@ -4,6 +4,8 @@ import { getUser } from '../api/authUserApi'
 import { deleteRecipe } from '../api/recipeApi'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
+import { useLoadingStore } from '../stores/loadingStore'
+import Loader from '../components/Loader.vue'
 
 const props = defineProps({
   userId: {
@@ -14,6 +16,7 @@ const props = defineProps({
 
 const router = useRouter()
 const auth = useAuthStore()
+const loadingStore = useLoadingStore()
 const isOwner = computed(() => auth.userId === props.userId)
 
 const recipesOwned = ref([])
@@ -25,6 +28,7 @@ const snackbar = ref({
 
 const fetchRecipesFromUser = async () => {
   try {
+    loadingStore.setLoading(true)
     const user = await getUser(props.userId)
     recipesOwned.value = user.recipesOwned.sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
@@ -35,6 +39,8 @@ const fetchRecipesFromUser = async () => {
       message: error.response?.data?.error || error.message,
       color: 'red-darken-4',
     }
+  } finally {
+    loadingStore.setLoading(false)
   }
 }
 
@@ -58,6 +64,7 @@ const del = async (recipeId) => {
 </script>
 
 <template>
+  <Loader />
   <div>
     <v-card v-for="recipe in recipesOwned" :key="recipe._id">
       <v-row
