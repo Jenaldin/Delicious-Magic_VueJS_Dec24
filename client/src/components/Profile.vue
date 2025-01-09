@@ -90,7 +90,7 @@ onMounted(() => {
    <Loader />
    <div>
       <div v-if="isOwner">
-         <v-switch v-model="isEditMode" color="amber-darken-1" label="Edit Profile" class="switch" />
+         <v-switch v-model="isEditMode" color="amber" label="Edit Profile" class="switch" />
       </div>
       <div v-if="isEditMode">
          <v-form @submit.prevent="editProfile">

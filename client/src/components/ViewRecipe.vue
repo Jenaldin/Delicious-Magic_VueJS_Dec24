@@ -116,7 +116,7 @@ const del = async () => {
         <div v-if="isLoggedIn && !isOwner">
           <v-row>
             <v-col>
-              <v-btn color="amber-darken-1" variant="tonal" @click="toFavorite"
+              <v-btn color="amber-darken-2" variant="tonal" @click="toFavorite"
                 >Add to Favorites</v-btn
               >
             </v-col>
@@ -173,7 +173,7 @@ const del = async () => {
       </v-row>
     </v-card-text>
     <div v-if="isLoggedIn" class="comms">
-      <v-btn color="amber-darken-1" variant="tonal" @click="drawer = !drawer">
+      <v-btn color="amber-darken-2" variant="tonal" @click="drawer = !drawer">
         {{ drawer ? 'Hide Comments' : 'Show Comments' }}
       </v-btn>
       <v-navigation-drawer v-model="drawer" location="right" permanent width="450">

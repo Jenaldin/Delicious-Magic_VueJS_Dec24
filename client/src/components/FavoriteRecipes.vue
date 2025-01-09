@@ -65,15 +65,16 @@ onMounted(() => {
              <h4>Type: {{ recipe.type }}</h4>
            </v-card-subtitle>
          </v-col>
-         <v-col cols="auto" class="d-flex align-center">
-           <v-card-actions>
+       </v-row>
+       <v-row>
+        <v-card-actions>
              <v-btn
-               color="amber-darken-1"
+               color="amber-darken-2"
                variant="tonal"
+               
                @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
              >View</v-btn>
            </v-card-actions>
-         </v-col>
        </v-row>
      </v-card>
      <v-snackbar v-model="snackbar.show" :color="snackbar.color">
@@ -91,8 +92,5 @@ onMounted(() => {
 .title-ellipsis {
   width: 30ch;
   white-space: normal;
-}
-.v-btn {
-  margin-right: 0.05rem;
 }
 </style>

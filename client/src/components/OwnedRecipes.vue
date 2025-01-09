@@ -66,52 +66,48 @@ const del = async (recipeId) => {
 <template>
   <Loader />
   <div>
-    <v-card v-for="recipe in recipesOwned" :key="recipe._id">
-      <v-row
-        ><v-col style="flex-grow: 1">
+    <v-card v-for="recipe in recipesOwned" :key="recipe._id" class="pa-3">
+      <v-row class="align-center">
+        <v-col cols="auto" class="d-flex align-center">
           <v-img
             :src="recipe.image ? recipe.image : '/recipe-img.png'"
             alt="Recipe Image"
-            max-height="65"
-            max-width="65"
-          ></v-img
-        ></v-col>
-        <v-col style="flex-grow: 7"
-          ><v-card-title
-            ><h5 class="title-ellipsis">{{ recipe.title }}</h5></v-card-title
-          ></v-col
-        >
-        <v-col style="flex-grow: 1"
-          ><v-card-subtitle>Type: {{ recipe.type }}</v-card-subtitle></v-col
-        >
-        
-          <v-col style="flex-grow: 3">
-            <v-card-actions>
-              <v-btn
-                size="small"
-                color="amber-darken-1"
-                variant="tonal"
-                @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
-                >View</v-btn
-              >
-              <div v-if="isOwner">
-              <v-btn
-                size="small"
-                color="green-darken-4"
-                variant="tonal"
-                @click="() => router.push({ name: 'edit-recipe', params: { id: recipe._id } })"
-                >Edit</v-btn
-              >
-              <v-btn
-                size="small"
-                color="red-darken-4"
-                variant="tonal"
-                @click="() => del(recipe._id)"
-                >Delete</v-btn
-              ></div>
-            </v-card-actions></v-col
-          >
-        
+            height="65"
+            width="65"
+          ></v-img>
+        </v-col>
+        <v-col cols="auto" class="d-flex align-center">
+          <v-card-title>
+            <h5 class="title-ellipsis">{{ recipe.title }}</h5>
+          </v-card-title>
+        </v-col>
+        <v-col cols="auto" class="d-flex align-center">
+          <v-card-subtitle>
+            <h4>Type: {{ recipe.type }}</h4>
+          </v-card-subtitle>
+        </v-col>
+        <v-card-actions>
+            <v-btn
+              color="amber-darken-2"
+              variant="tonal"
+              
+              @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
+            >View</v-btn>
+
+            <v-btn v-if="isOwner"
+              color="green-darken-4"
+              variant="tonal"
+              
+              @click="() => router.push({ name: 'edit-recipe', params: { id: recipe._id } })"
+            >Edit</v-btn>
+
+            <v-btn v-if="isOwner"
+              color="red-darken-4"
+              variant="tonal"
+              
+              @click="() => del(recipe._id)"
+            >Delete</v-btn>
+          </v-card-actions>
       </v-row>
     </v-card>
     <v-snackbar v-model="snackbar.show" :color="snackbar.color">
@@ -128,8 +124,5 @@ const del = async (recipeId) => {
 .title-ellipsis { 
    width: 30ch;
    white-space: normal; 
-}
-.v-btn {
-  margin-right: 0.05rem;
 }
 </style>

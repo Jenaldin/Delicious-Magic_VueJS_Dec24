@@ -90,7 +90,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
 
                 <v-card-actions>
                   <v-btn
-                    color="amber-darken-1"
+                    color="amber-darken-2"
                     variant="tonal"
                     @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
                   >
@@ -136,7 +136,7 @@ const drinkRecipes = computed(() => catalogStore.drinkRecipes);
                 </v-card-subtitle>
                 <v-card-actions>
                   <v-btn
-                    color="amber-darken-1"
+                    color="amber-darken-2"
                     variant="tonal"
                     @click="() => router.push({ name: 'view-recipe', params: { id: recipe._id } })"
                   >
