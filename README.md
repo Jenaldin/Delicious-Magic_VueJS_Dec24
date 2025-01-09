@@ -75,7 +75,7 @@ Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible 
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
 /user/register | POST | Creates a new user item | :heavy_check_mark: | :x: | **-**
 /user/login | POST | Logs in as an existing user | :heavy_check_mark: | :x: | **-**
-/user/logout | GET | Logs out an existing user | :x: | :x: | **-**
+/user/logout | GET | Logs out an existing user | :heavy_check_mark: | :heavy_check_mark: | **-**
 /user/:userId | GET | Retrieves a user item | :heavy_check_mark: | :heavy_check_mark: | **-**
 /user/addFav | PUT | Adds a recipe item to a user item collection | :x: | :heavy_check_mark: | **-**
 /user/edit/:userId | PUT | Updates/Edits details of a user item | :x: | **-** | :heavy_check_mark:
