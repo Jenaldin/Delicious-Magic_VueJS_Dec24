@@ -39,13 +39,17 @@ Skip ‘concurrently’ altogether and do separate install and start/run for the
 ## Usage
 ### From an End User Perspective
 - As a ***guest user***, you can:
-   - Access the home, catalog, search, about, login, and register pages;
-   - View the details page of a book from the home, catalog, and search pages;
-   - If you attempt to access a non-existent location, you will be redirected to /404;
-   - If you try to access a page for which you lack authorization, 
+   - Access the home, all recipes catalog, about, login, and register pages;
+   - View the details page of a recipe from the home, catalog, user owned recipes and user favorites recipes;
+   - View the comments page of a recipe from the recipe details page;
+   - If you attempt to access a non-existent location, you will be redirected to /not-found page;
+   - If you try to access a page for which you lack authorization, you will be redirected to /not-found page;
 - As an ***authenticated user***, you can:
-   - Access the home, catalog, search, about, and profile pages, and have the option to logout;
-   - View the details page of a book from the home, catalog, and search pages;
+   - Access the home, all recipes catalog, about, login, and register pages;
+   - View the details page of a recipe from the home, catalog, user owned recipes and user favorites recipes;
+   - View the comments page of a recipe from the recipe details page;
+   - If you attempt to access a non-existent location, you will be redirected to /not-found page;
+   - If you try to access a page for which you lack authorization, you will be redirected to /not-found page;
 
 ### REST API Endpoints
 Base URL is http://localhost:3000/api.
@@ -62,8 +66,8 @@ Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible 
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
 /user/register | POST | Creates a new user item | :heavy_check_mark: | :x: | **-**
 /user/login | POST | Logs in as an existing user | :heavy_check_mark: | :x: | **-**
-/user/logout | GET | Logs out an existing user | :x: | :heavy_check_mark: | **-**
-/user/:userId | GET | Retrieves a user item | :x: | :heavy_check_mark: | **-**
+/user/logout | GET | Logs out an existing user | :x: | :x: | **-**
+/user/:userId | GET | Retrieves a user item | :heavy_check_mark: | :heavy_check_mark: | **-**
 /user/addFav | PUT | Adds a recipe item to a user item collection | :x: | :heavy_check_mark: | **-**
 /user/edit/:userId | PUT | Updates/Edits details of a user item | :x: | **-** | :heavy_check_mark:
 \~~~ | ~~~ | ~~~ | ~~~ | ~~~ | ~~~
