@@ -1,61 +1,64 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
-import { useCatalogStore } from '../stores/catalogStore'
-import { useRouter } from 'vue-router'
-import { getAllRecipes } from '../api/recipeApi'
-import { formatDate } from '../utils/formatDates'
-import { useLoadingStore } from '../stores/loadingStore'
-import Loader from '../components/Loader.vue'
+import { ref, onMounted, computed, watch } from 'vue';
+import { useCatalogStore } from '../stores/catalogStore';
+import { useRoute, useRouter } from 'vue-router';
+import { getAllRecipes } from '../api/recipeApi';
+import { formatDate } from '../utils/formatDates';
+import { useLoadingStore } from '../stores/loadingStore';
+import Loader from '../components/Loader.vue';
 
-const catalogStore = useCatalogStore()
-const router = useRouter()
-const loadingStore = useLoadingStore()
+const catalogStore = useCatalogStore();
+const router = useRouter();
+const route = useRoute();
+const loadingStore = useLoadingStore();
 
-const foodPage = ref(1)
-const drinkPage = ref(1)
-const pageSize = 6
+const foodPage = ref(parseInt(route.query.foodPage) || 1);
+const drinkPage = ref(parseInt(route.query.drinkPage) || 1);
+const pageSize = 6;
 
 const snackbar = ref({
   show: false,
   message: '',
   color: 'red-darken-4',
-})
+});
 
 const fetchRecipes = async (type, page) => {
   try {
-    loadingStore.setLoading(true)
-    const data = await getAllRecipes(type, page, pageSize)
+    loadingStore.setLoading(true);
+    const data = await getAllRecipes(type, page, pageSize);
     if (type === 'food') {
-      catalogStore.foodRecipes = data.recipes
-      catalogStore.foodTotal = data.total
+      catalogStore.foodRecipes = data.recipes;
+      catalogStore.foodTotal = data.total;
     } else {
-      catalogStore.drinkRecipes = data.recipes
-      catalogStore.drinkTotal = data.total
+      catalogStore.drinkRecipes = data.recipes;
+      catalogStore.drinkTotal = data.total;
     }
   } catch (error) {
     snackbar.value = {
       show: true,
       message: error.message,
       color: 'red-darken-4',
-    }
+    };
   } finally {
-    loadingStore.setLoading(false)
+    loadingStore.setLoading(false);
   }
-}
+};
 
 onMounted(() => {
-  fetchRecipes('food', foodPage.value)
-  fetchRecipes('drink', drinkPage.value)
-})
+  fetchRecipes('food', foodPage.value);
+  fetchRecipes('drink', drinkPage.value);
+});
 watch(foodPage, (newPage) => {
-  fetchRecipes('food', newPage)
-})
+  router.push({ path: '/catalog', query: { ...route.query, foodPage: newPage } });
+  fetchRecipes('food', newPage);
+});
 watch(drinkPage, (newPage) => {
-  fetchRecipes('drink', newPage)
-})
+  router.push({ path: '/catalog', query: { ...route.query, drinkPage: newPage } });
+  fetchRecipes('drink', newPage);
+});
 
-const foodRecipes = computed(() => catalogStore.foodRecipes)
-const drinkRecipes = computed(() => catalogStore.drinkRecipes)
+const foodRecipes = computed(() => catalogStore.foodRecipes);
+const drinkRecipes = computed(() => catalogStore.drinkRecipes);
 </script>
 
 <template>
