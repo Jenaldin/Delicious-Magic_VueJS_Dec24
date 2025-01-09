@@ -180,6 +180,7 @@ const submitForm = async () => {
       </v-row>
 
       <v-btn type="submit" color="amber">Save Recipe</v-btn>
+      <v-btn color="grey" @click="router.back()">Cancel</v-btn>
     </v-form>
 
     <v-snackbar v-model="snackbar.show" :color="snackbar.color" top>
