@@ -7,12 +7,16 @@ const isLoading = computed(() => useLoadingStore().isLoading);
 
 <template>
   <div v-if="isLoading" class="loader-container">
+    <v-overlay
+      :model-value="isLoading"
+      class="align-center justify-center"
+    >
    <v-progress-circular
-      :size="75"
+      :size="85"
       :width="7"
       color="teal-darken-3"
       indeterminate
-    ></v-progress-circular>
+    ></v-progress-circular></v-overlay>
   </div>
 </template>
 
