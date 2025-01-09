@@ -1,14 +1,21 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
 
-const tab = ref('login');
+const route = useRoute();
+const router = useRouter();
+const tab = ref(route.query.tab || 'login');
 
 const tabs = computed(() => [
   { value: 'login', label: 'Login' },
   { value: 'register', label: 'Register' }
 ]);
+
+watch(tab, (newTab) => {
+   router.push({ path: route.path, query: { ...route.query, tab: newTab } });
+});
 </script>
 
 <template>

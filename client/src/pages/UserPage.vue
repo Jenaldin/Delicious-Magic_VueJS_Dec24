@@ -1,22 +1,27 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import OwnedRecipes from '../components/OwnedRecipes.vue';
 import FavoriteRecipes from '../components/FavoriteRecipes.vue';
 import Profile from '../components/Profile.vue';
 import { useAuthStore } from '../stores/authStore';
 
 const route = useRoute();
+const router = useRouter();
 const authStore = useAuthStore(); 
 const userId = computed(() => route.params.userId || authStore.userId);
 
-const tab = ref('profile');
+const tab = ref(route.query.tab || 'profile');
 
 const tabs = computed(() => [
    { value: 'profile', label: 'Profile' },
-   { value: 'owned', label: 'Owned Recipes' },
-   { value: 'favorites', label: 'Favorite Recipes' },
+   { value: 'owned', label: 'My Recipes' },
+   { value: 'favorites', label: 'My Favorites' },
 ]);
+
+watch(tab, (newTab) => {
+   router.push({ path: route.path, query: { ...route.query, tab: newTab } });
+});
 </script>
 
 <template>

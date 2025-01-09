@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 import { getRecipe, rateRecipe, deleteRecipe } from '../api/recipeApi'
@@ -18,7 +18,7 @@ const recipeId = route.params.id
 const recipe = ref(null)
 const isOwner = computed(() => auth.userId === recipe.value?.owner._id)
 const isLoggedIn = computed(() => auth.isAuthenticated)
-const drawer = ref(false)
+const drawer = ref(route.query.comments === 'true' )
 
 const snackbar = ref({
   show: false,
@@ -42,6 +42,10 @@ const fetchRecipe = async (id) => {
 onMounted(() => {
   fetchRecipe(recipeId)
 })
+
+watch(drawer, (newDrawerState) => { 
+  router.push({ path: route.path, query: { ...route.query, comments: newDrawerState } });
+});
 
 const rate = async (rating) => {
   try {
