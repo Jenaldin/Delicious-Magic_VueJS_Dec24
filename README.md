@@ -91,6 +91,7 @@ Endpoint | HTTP Method | Description | Accessible to Guests (Y/N)? | Accessible 
 
 ### Project structure
 Here is an overview of the project's structure with folders and files:
+<details>
 - client
   - public
     - avatar-img.png
@@ -168,3 +169,4 @@ Here is an overview of the project's structure with folders and files:
     - tkn.js
   - router.js
   - server.js
+</details>
