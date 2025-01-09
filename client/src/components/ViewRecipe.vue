@@ -89,101 +89,97 @@ const del = async () => {
 
 <template>
   <Loader />
-  <div v-if="recipe">
-    <v-card class="recipe-card">
-      <v-card-title>
-        <h2>{{ recipe.title }}</h2>
-      </v-card-title>
-      <v-card-title
-        >Added by
-        <router-link :to="{ name: 'user-id', params: { userId: recipe.owner._id } }">
-          {{ recipe.owner.username }}
-        </router-link>
-        on {{ formatDate(recipe.createdAt) }}</v-card-title
-      >
-      <v-card-subtitle>
-        <h4>Time to prepare: {{ recipe.prepTime }}</h4>
-      </v-card-subtitle>
-      <v-card-subtitle>
-        <h4>Portions: {{ recipe.portions }}</h4>
-      </v-card-subtitle>
-      <v-card-actions>
-        <div class="btns">
-          <div v-if="isLoggedIn && !isOwner">
-            <v-row>
-              <v-col>
-                <v-btn color="amber-darken-1" variant="tonal" @click="toFavorite"
-                  >Add to Favorites</v-btn
-                >
-              </v-col>
-              <v-col>
-                <v-rating
-                  half-increments
-                  hover
-                  :length="5"
-                  :size="32"
-                  active-color="teal-darken-3"
-                  @update:modelValue="rate"
-                  :modelValue="recipe.averageRating"
-                />
-              </v-col>
-            </v-row>
-          </div>
-          <div v-if="isOwner">
-            <v-row>
-              <v-col>
-                <v-btn
-                  color="green-darken-4"
-                  variant="tonal"
-                  @click="() => router.push({ name: 'edit-recipe', params: { id: recipeId } })"
-                  >Edit</v-btn
-                >
-              </v-col>
-              <v-col>
-                <v-btn color="red-darken-4" variant="tonal" @click="del">Delete</v-btn>
-              </v-col>
-            </v-row>
-          </div>
+
+  <v-card class="recipe-card">
+    <v-card-title>
+      <h2>{{ recipe.title }}</h2>
+    </v-card-title>
+    <v-card-title
+      >Added by
+      <router-link :to="{ name: 'user-id', params: { userId: recipe.owner._id } }">
+        {{ recipe.owner.username }}
+      </router-link>
+      on {{ formatDate(recipe.createdAt) }}</v-card-title
+    >
+    <v-card-subtitle>
+      <h4>Time to prepare: {{ recipe.prepTime }}</h4>
+    </v-card-subtitle>
+    <v-card-subtitle>
+      <h4>Portions: {{ recipe.portions }}</h4>
+    </v-card-subtitle>
+    <v-card-actions>
+      <div class="btns">
+        <div v-if="isLoggedIn && !isOwner">
+          <v-row>
+            <v-col>
+              <v-btn color="amber-darken-1" variant="tonal" @click="toFavorite"
+                >Add to Favorites</v-btn
+              >
+            </v-col>
+            <v-col>
+              <v-rating
+                half-increments
+                hover
+                :length="5"
+                :size="32"
+                active-color="teal-darken-3"
+                @update:modelValue="rate"
+                :modelValue="recipe.averageRating"
+              />
+            </v-col>
+          </v-row>
         </div>
-      </v-card-actions>
-      <img
-        :src="recipe.image ? recipe.image : '/img-placeholder.png'"
-        alt="Recipe Image"
-        class="rec-img"
-      />
-      <v-card-text>
-        <v-row>
-          <v-col style="flex-grow: 3">
-            <h2>Ingredients</h2>
-            <ul>
-              <li v-for="ingredient in recipe.ingredients" :key="ingredient">{{ ingredient }}</li>
-            </ul>
-          </v-col>
-          <v-divider :thickness="2" color="teal-darken-3" vertical class="div-space"></v-divider>
-          <v-col style="flex-grow: 7">
-            <h2>Steps</h2>
-            <ol>
-              <li v-for="step in recipe.steps" :key="step">{{ step }}</li>
-            </ol>
-          </v-col>
-        </v-row>
-      </v-card-text>
-      <div v-if="isLoggedIn" class="comms">
-        <v-btn color="amber-darken-1" variant="tonal" @click="drawer = !drawer">
-          {{ drawer ? 'Hide Comments' : 'Show Comments' }}
-        </v-btn>
-        <v-navigation-drawer v-model="drawer" location="right" permanent width="450">
-          <CommentPage />
-        </v-navigation-drawer>
+        <div v-if="isOwner">
+          <v-row>
+            <v-col>
+              <v-btn
+                color="green-darken-4"
+                variant="tonal"
+                @click="() => router.push({ name: 'edit-recipe', params: { id: recipeId } })"
+                >Edit</v-btn
+              >
+            </v-col>
+            <v-col>
+              <v-btn color="red-darken-4" variant="tonal" @click="del">Delete</v-btn>
+            </v-col>
+          </v-row>
+        </div>
       </div>
-    </v-card>
-    <v-snackbar v-model="snackbar.show" :color="snackbar.color">
-      {{ snackbar.message }}
-    </v-snackbar>
-  </div>
-  <div v-else>
-    <p>Loading...</p>
-  </div>
+    </v-card-actions>
+    <img
+      :src="recipe.image ? recipe.image : '/img-placeholder.png'"
+      alt="Recipe Image"
+      class="rec-img"
+    />
+    <v-card-text>
+      <v-row>
+        <v-col style="flex-grow: 3">
+          <h2>Ingredients</h2>
+          <ul>
+            <li v-for="ingredient in recipe.ingredients" :key="ingredient">{{ ingredient }}</li>
+          </ul>
+        </v-col>
+        <v-divider :thickness="2" color="teal-darken-3" vertical class="div-space"></v-divider>
+        <v-col style="flex-grow: 7">
+          <h2>Steps</h2>
+          <ol>
+            <li v-for="step in recipe.steps" :key="step">{{ step }}</li>
+          </ol>
+        </v-col>
+      </v-row>
+    </v-card-text>
+    <div v-if="isLoggedIn" class="comms">
+      <v-btn color="amber-darken-1" variant="tonal" @click="drawer = !drawer">
+        {{ drawer ? 'Hide Comments' : 'Show Comments' }}
+      </v-btn>
+      <v-navigation-drawer v-model="drawer" location="right" permanent width="450">
+        <CommentPage />
+      </v-navigation-drawer>
+    </div>
+  </v-card>
+  <v-snackbar v-model="snackbar.show" :color="snackbar.color">
+    {{ snackbar.message }}
+  </v-snackbar>
 </template>
 
 <style scoped>
