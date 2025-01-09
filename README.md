@@ -9,7 +9,7 @@ Currently Delicious Magic is not deployed publicly, but if this changes, the lin
 The App is currently in the development phase, with no production options included. It utilizes MongoDB as its database (mongodb://127.0.0.1:27017/).
 Frontend runs on http://localhost:5173 and uses : | Backend runs on http://localhost:3000/ and uses:
 ---------------------------------------------------------------|----------------------------------------------------
-VueJS 3 (with Vite), Vuelidate, Vue Router, Axios, Pinia, Vuetify (UI), MDI as CDN | Express, Mongoose, BCrypt, Cookie-parser, JWT
+VueJS 3(Vite), Vuelidate, Vue Router, Axios, Pinia, Vuetify, MDI | Express, Mongoose, BCrypt, Cookie-parser, JWT
 (For more details, please refer to ```/client/package.json```) | (For more details, please refer to ```/server/package.json```)
 
 ## Installation Guide
