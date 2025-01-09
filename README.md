@@ -39,15 +39,24 @@ Skip ‘concurrently’ altogether and do separate install and start/run for the
 ## Usage
 ### From an End User Perspective
 - As a ***guest user***, you can:
-   - Access the home, all recipes catalog, about, login, and register pages;
-   - View the details page of a recipe from the home, catalog, user owned recipes and user favorites recipes;
-   - View the comments page of a recipe from the recipe details page;
+   - View the home, about, all recipes catalog, login/register pages;
+   - View the details page of a recipe from the catalog, user owned recipes and user favorites recipes;
+   - View the comments panel of a recipe from the recipe details page;
+   - View a user'a page, when clicking on a username, and their profile, recipes owned, recipes favorites;
    - If you attempt to access a non-existent location, you will be redirected to /not-found page;
-   - If you try to access a page for which you lack authorization, you will be redirected to /not-found page;
+   - If you try to access a page for which you lack authorization, you will be redirected to /not-found page or login/register page depending on the case;
 - As an ***authenticated user***, you can:
-   - Access the home, all recipes catalog, about, login, and register pages;
-   - View the details page of a recipe from the home, catalog, user owned recipes and user favorites recipes;
-   - View the comments page of a recipe from the recipe details page;
+   - View the home, about, all recipes catalog, add recipe, my cookbook & recipes pages and the option to logout;
+   - View the details page of a recipe from the catalog, user owned recipes and user favorites recipes;
+   - If you're not the owner of a recipe, provide rating for it from its details page;
+   - If you're not the owner of a recipe, add it to your favorites recipes from its details page;
+   - Add a new recipe from the add recipe page;
+   - If you’re the owner of a recipe, edit or delete it from its details page;
+   - View the comments panel of a recipe from its details page;
+   - Add a new comment to a recipe from the comments panel of its details page;
+   - If you’re the owner of a comment, edit or delete it from the comments panel of the recipe details page;
+   - View a user's page, when clicking on a username, and their profile, recipes owned, recipes favorites;
+   - If it is your user page (My Cookbook & Recipes), edit your e-mail, avatar and "about me" information, view/edit/delete recipes you own, view recipes you favour;
    - If you attempt to access a non-existent location, you will be redirected to /not-found page;
    - If you try to access a page for which you lack authorization, you will be redirected to /not-found page;
 
