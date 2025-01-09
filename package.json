@@ -1,5 +1,13 @@
 {
+  "name": "Delicious-Magic",
+  "author": "Jenny-Guteva",
+  "version": "1.0.0",
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install && cd ..",
+    "start-all": "concurrently \"cd server && npm start\" \"cd client && npm run dev\"",
+    "magic": "npm run install-all && npm run start-all"
   }
 }
