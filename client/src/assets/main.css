@@ -1,5 +1,3 @@
-/* main.css */
-
 :root {
   --color-background: #fafafa;
   --color-text: #212121;
@@ -19,7 +17,6 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size);
   color: var(--color-text);
-  /* background-color: var(--color-background); */
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -89,7 +86,7 @@ main {
   padding: var(--content-padding);
   box-sizing: border-box;
   overflow-y: auto;
-  position: relative; /* Ensure it is positioned above the background */
+  position: relative;
   z-index: 1;
 }
 
