@@ -31,7 +31,8 @@ p, li {
 
 a {
   text-decoration:none;
-  color: #FFC107;
+  color: #FF8F00;
+  font-weight: bold;
   transition: color 0.3s, background-color 0.3s;
 }
 
