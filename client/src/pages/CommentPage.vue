@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import AddComment from '../components/AddComment.vue';
+import AddComment from '../components/NewComment.vue';
 import ViewComment from '../components/ViewComment.vue';
 import { getAllComments, addComment } from '../api/commentApi';
 
@@ -24,7 +24,11 @@ const fetchComm = async () => {
   try {
     comments.value = await getAllComments(recipeId);  
   } catch (error) {
-    console.error('Error fetching comments:', error);
+   snackbar.value = {
+      show: true,
+      message: error.response.data.error || 'Error during fetching comments.',
+      color: 'red-darken-4'
+    };
   }
 };
 
@@ -43,7 +47,7 @@ const addComm = async (comment) => {
   } catch (error) {
    snackbar.value = {
       show: true,
-      message: error.response.data.error || 'Error during adding comment.',
+      message: error.response.data.error || 'Failed to add comment. Please try again.',
       color: 'red-darken-4'
     };
   }
