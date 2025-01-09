@@ -10,7 +10,7 @@ The App is currently in the development phase, with no production options includ
 Frontend runs on http://localhost:5173 and uses : | Backend runs on http://localhost:3000/ and uses:
 ---------------------------------------------------------------|----------------------------------------------------
 VueJS 3(Vite), Vuelidate, Vue Router, Axios, Pinia, Vuetify, MDI | Express, Mongoose, BCrypt, Cookie-parser, JWT, Cors, Validator, Dotenv
-(For more details, please refer to ```/client/package.json```) | (For more details, please refer to ```/server/package.json```)
+(For details, please refer to ```/client/package.json```) | (For details, please refer to ```/server/package.json```)
 
 ## Installation Guide
 ### Prerequisites
