@@ -190,6 +190,9 @@ const submitForm = async () => {
 </template>
 
 <style scoped>
+.v-container {
+  max-width: 1200px;
+}
 .v-btn {
   margin: 0.2rem
 }

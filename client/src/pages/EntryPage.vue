@@ -46,6 +46,9 @@ watch(tab, (newTab) => {
 </template>
 
 <style scoped>
+.v-container {
+  max-width: 1200px;
+}
 .v-tabs {
   background-color: #FFC107;
 }

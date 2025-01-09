@@ -217,4 +217,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.v-container {
+  max-width: 1200px;
+}
 </style>
