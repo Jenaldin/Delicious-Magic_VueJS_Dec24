@@ -1,7 +1,8 @@
 {
-  "name": "server",
+  "name": "delicious-magic",
+  "author": "jenny-guteva",
   "version": "1.0.0",
-  "description": "Server REST API for VueJS SoftUni exam December, 2024",
+  "description": "Server REST API for VueJS SoftUni exam January, 2025",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -9,7 +10,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Jenny Guteva",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.9"

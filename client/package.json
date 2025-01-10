@@ -1,6 +1,7 @@
 {
   "name": "delicious-magic",
-  "version": "0.0.0",
+  "author": "jenny-guteva",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,6 +1,6 @@
 {
-  "name": "Delicious-Magic",
-  "author": "Jenny-Guteva",
+  "name": "delicious-magic",
+  "author": "jenny-guteva",
   "version": "1.0.0",
   "devDependencies": {
     "concurrently": "^9.1.2"
