@@ -47,7 +47,7 @@ Skip Concurrently altogether and do separate install and start/run for the /serv
    - View the details page of a recipe from the catalog, user owned recipes and user favorites recipes;
    - View a user'a page, when clicking on a username, and their profile, recipes owned, recipes favorites;
    - If you attempt to access a non-existent location, you will be redirected to /not-found page;
-   - If you try to access a page for which you lack authorization, you will be redirected to /not-found page or login/register page depending on the case;
+   - If you try to access a page for which you lack authorization, you will be redirected to login/register page.
 - As an ***authenticated user***, you can:
    - View the home, about, all recipes catalog, add recipe, my cookbook & recipes pages and the option to logout;
    - View the details page of a recipe from the catalog, user owned recipes and user favorites recipes;
@@ -61,7 +61,7 @@ Skip Concurrently altogether and do separate install and start/run for the /serv
    - View a user's page, when clicking on a username, and their profile, recipes owned, recipes favorites;
    - If it is your user page (My Cookbook & Recipes), edit your e-mail, avatar and "about me" information, view/edit/delete recipes you own, view recipes you favour;
    - If you attempt to access a non-existent location, you will be redirected to /not-found page;
-   - If you try to access a page for which you lack authorization, you will be redirected to /not-found page;
+   - If you try to access a page for which you lack authorization, you will be redirected to /not-found page.
 
 ### REST API Endpoints
 Base URL is http://localhost:3000/api.
