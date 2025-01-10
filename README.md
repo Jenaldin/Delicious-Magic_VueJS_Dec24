@@ -4,7 +4,7 @@ Delicious Magic (the App) is initially designed as a VueJS Exam Project for Soft
 By its nature, Delicious Magic is a blog-type web app, that provides end users a catalog of recipes with ingredients and steps, and if they are logged in - the opportunity to interact with the recipes. It is a simple representation of a popular idea and it is intended to be used by people for whom cooking/mixing is an enjoyable hobby or are in search of a simple recipe to bring to the table. What differs from most similar apps is the addition of recipes for drinks, not only for food.
 
 Currently Delicious Magic is not deployed publicly, but if this changes, the link will be shared here.
-For screenshots of the App, [click here](.screenshots)
+For screenshots of the App, [click here](.screenshots).
 
 ## Project Overview
 The App is currently in the development phase, with no production options included. It utilizes MongoDB as its database (mongodb://127.0.0.1:27017/).
