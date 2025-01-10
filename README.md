@@ -44,7 +44,6 @@ Skip ‘concurrently’ altogether and do separate install and start/run for the
 - As a ***guest user***, you can:
    - View the home, about, all recipes catalog, login/register pages;
    - View the details page of a recipe from the catalog, user owned recipes and user favorites recipes;
-   - View the comments panel of a recipe from the recipe details page;
    - View a user'a page, when clicking on a username, and their profile, recipes owned, recipes favorites;
    - If you attempt to access a non-existent location, you will be redirected to /not-found page;
    - If you try to access a page for which you lack authorization, you will be redirected to /not-found page or login/register page depending on the case;
