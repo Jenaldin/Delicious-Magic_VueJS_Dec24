@@ -146,7 +146,7 @@ const del = async () => {
             </v-col>
             <v-col>
               <v-avatar size="55">
-                <v-img :src="comment.owner.avatar || '/img-placeholder.png'" />
+                <v-img :src="comment.owner.avatar || '/avatar-img.png'" />
               </v-avatar>
             </v-col>
           </v-row>
