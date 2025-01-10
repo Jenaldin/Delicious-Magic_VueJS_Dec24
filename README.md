@@ -1,9 +1,10 @@
 # Delicious Magic by Jenny Guteva
-Delicious Magic is initially designed as a VueJS Exam Project for SoftUni's December 2025 examination session. However, with the author's evolving commitments and availability, it holds the potential to grow, having additional features in the future (such as admin panel and functionality, recipe search, upload of images, in-app user communication, better UI and design, etc.). As it is, this is MVP version 1.0.
+Delicious Magic (the App) is initially designed as a VueJS Exam Project for SoftUni's December 2025 examination session. However, with the author's evolving commitments and availability, it holds the potential to grow, having additional features in the future (such as admin panel and functionality, recipe search, upload of images, in-app user communication, better UI and design, etc.). As it is, this is MVP version 1.0.
 
 By its nature, Delicious Magic is a blog-type web app, that provides end users a catalog of recipes with ingredients and steps, and if they are logged in - the opportunity to interact with the recipes. It is a simple representation of a popular idea and it is intended to be used by people for whom cooking/mixing is an enjoyable hobby or are in search of a simple recipe to bring to the table. What differs from most similar apps is the addition of recipes for drinks, not only for food.
 
 Currently Delicious Magic is not deployed publicly, but if this changes, the link will be shared here.
+For screenshots of the App, [click here](.screenshots)
 
 ## Project Overview
 The App is currently in the development phase, with no production options included. It utilizes MongoDB as its database (mongodb://127.0.0.1:27017/).
@@ -19,22 +20,22 @@ VueJS 3(Vite), Vuelidate, Vue Router, Axios, Pinia, Vuetify, MDI | Express, Mong
 
 ### Setup Instructions
 1. Download or clone the repository.
-The application uses ‘concurrently’.
+As project has Concurrently installed on root, below are options for you to proceed after you have the code.
 
 <<***Option 1***>>
 
-2. Run `npm run magic` to install all dependencies and start the client and server.
+2. Run `npm run magic` to install all dependencies (root, server & client) and start the App.
 
 <<***Option 2***>>
 
-Run install and start separately with ‘concurrently’.
+Run install and start separately with Concurrently.
 
 2. Run `npm run install-all` to install all the necessary dependencies from `package.json` files for the project (root, server & client). 
 3. Run `npm run start-all` to start both the frontend and backend simultaneously.
 
 <<***Option 3***>>
 
-Skip ‘concurrently’ altogether and do separate install and start/run for the /server and /client
+Skip Concurrently altogether and do separate install and start/run for the /server and /client
 
 2. Run `npm install` in /server for the backend and then in the /client for the frontend. 
 3. Run separately `npm start` in /server for the backend and `npm run dev` in /client for the frontend.
