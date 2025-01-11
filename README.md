@@ -1,7 +1,7 @@
 # Delicious Magic by Jenny Guteva
 Delicious Magic (the App) is initially designed as a VueJS Exam Project for SoftUni's December 2025 examination session. However, with the author's evolving commitments and availability, it holds the potential to grow, having additional features in the future (such as admin panel and functionality, recipe search, upload of images, in-app user communication, better UI and design, etc.). As it is, this is MVP version 1.0.
 
-By its nature, Delicious Magic is a blog-type web app, that provides end users a catalog of recipes with ingredients and steps, and if they are logged in - the opportunity to interact with the recipes. It is a simple representation of a popular idea and it is intended to be used by people for whom cooking/mixing is an enjoyable hobby or are in search of a simple recipe to bring to the table. What differs from most similar apps is the addition of recipes for drinks, not only for food.
+By its nature, Delicious Magic is a blog-type web app, that provides end users a catalog of recipes with ingredients and steps, and if they are logged in - the opportunity to interact with the recipes. It is a simple representation of a popular idea and it is intended to be used by people for whom cooking/mixing is an enjoyable hobby or are in search of a simple recipe to bring to the table. The App contains recipes for drinks as well as food.
 
 Currently Delicious Magic is not deployed publicly, but if this changes, the link will be shared here.
 For screenshots of the App, [click here](.screenshots).
