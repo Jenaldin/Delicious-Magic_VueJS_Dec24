@@ -21,6 +21,8 @@ const snackbar = ref({
   color: "green-darken-4",
 });
 
+//NOTE: THIS IS NOT CORRECT, THIS SHOULD NOT BE CONSTRUCTED LIKE THAT AS THIS IS MUTATING OF PROPS!!!
+//FIX IT!
 const sanitizeForm = () => {
   props.newComment.title = props.newComment.title.trim();
   props.newComment.body = props.newComment.body.trim();
